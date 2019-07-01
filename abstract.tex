@@ -23,56 +23,68 @@
 
 % 中文摘要
 \begin{titlepage}
+
+    \pagestyle{empty}
+
     \begin{spacing}{1.05}
         \centering
-        \parbox[c]{.6\textwidth}{\thesistitlefont{\thesistitle}}
+        % 如果你的标题太长，可能会换行；如果你对换行位置不满意，请调节下面第一个{}的参数
+        \parbox[c]{.75\textwidth}{\thesistitlefont{\thesistitle}}
     \end{spacing}
 
-    \begin{spacing}{1.6}
+    \begin{spacing}{1.5}
         \centering
         \sanhao\quad{} \\ 
-        \abscnname{摘\quad{}要} \\ 
-        \xiaosanhao\quad{}
+        \abszhname{摘\quad{}要} \\ 
     \end{spacing}
-    
+    \xiaosanhao\quad{}
+
     \normalsize
 
-    \abstractcn
+    \abstractzh
     
+
     \quad{}
 
-    \abscnkey{关键词}\quad{}%
-    \abscnkeys{\abscnkeyone\quad{}%
-                      \abscnkeytwo\quad{}%
-                      \abscnkeythree\quad{}%
-                      \abscnkeyfour\quad{}%
-                      \abscnkeyfive}%
+    \par\noindent\abszhkey{关键词}\quad{}%
+    \abszhkeys{\abszhkeyone\quad{}%
+                      \abszhkeytwo\quad{}%
+                      \abszhkeythree\quad{}%
+                      \abszhkeyfour\quad{}%
+                      \abszhkeyfive}%
 \end{titlepage}
+
+\thispagestyle{empty}
 
 % Abstract
 \begin{titlepage}
+
+    \pagestyle{empty}
+
     \begin{spacing}{1.05}
         \centering
-        \parbox[c]{.6\textwidth}{\thesistitleenfont{\thesistitleen}}
+        % 如果你的标题太长，可能会换行；如果你对换行位置不满意，请调节下面第一个{}的参数
+        \parbox[c]{.75\textwidth}{\thesistitleenfont{\thesistitleen}}
     \end{spacing}
 
-    \begin{spacing}{1.6}
+    \begin{spacing}{1.5}
         \centering
         \sanhao\quad{} \\ 
-        \abscnname{ABSTRACT} \\ 
-        \xiaosanhao\quad{}
+        \abszhname{ABSTRACT} \\ 
     \end{spacing}
-
+    \xiaosanhao\quad{}
     \normalsize
 
     \abstracten
     
     \quad{}
 
-    \absenkey{KEY WORDS}\quad{}%
+    \par\noindent\absenkey{KEY WORDS}\quad{}%
     \absenkeys{\absenkeyone\quad{}%
                       \absenkeytwo\quad{}%
                       \absenkeythree\quad{}%
                       \absenkeyfour\quad{}%
                       \absenkeyfive}%
 \end{titlepage}
+
+\thispagestyle{empty}

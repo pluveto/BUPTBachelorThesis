@@ -36,6 +36,8 @@
 
 ## 如何使用
 
+[使用手册](https://github.com/BYRIO/BUPTBachelorThesis/tree/master/guidebook)
+
 ### 编辑以下文件
 
 - main.cfg:   

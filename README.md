@@ -11,6 +11,10 @@
 初始上线日期: 2018/4/24  
 最新发行版日期: 2021/4/30
 
+### 欢迎在讨论区进行讨论
+
+> https://github.com/BYRIO/BUPTBachelorThesis/discussions
+
 ## 系统需求
 
 ### Windows

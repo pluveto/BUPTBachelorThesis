@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% Begin Documents %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-% 封面
+% 封面 
 \blankmatter
 \includepdf[pages=-]{docs/cover.pdf}  
 
@@ -42,265 +42,1411 @@
 %\let\cleardoublepage\relax % Make new chapter stay on old page
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{基础模块示例}
+\chapter{引言}
 
-\section{特殊文本类型}
-\subsection{脚注}
-% 如果你的项目来源于科研项目，可以使用以下指令插入无编号脚注于正文第一页
-\blfootnote{本项目来源于科研项目“基于\LaTeX{}的本科毕业设计”，项目编号1124}
-社交媒体是一种供用户创建在线社群来分享信息、观点、个人信息和其它内容（如视频）的电子化交流平台，社交网络服务（social network service, SNS）和微博客（microblogging）都属于社交媒体的范畴\cite{webster_social_media}，国外较为知名的有Facebook\footnote{http://www.facebook.com/}、Instagram\footnote{https://www.instagram.com/}、Twitter\footnote{http://www.twitter.com/}、LinkedIn\footnote{http://www.linkedin.com/}等，国内较为知名的有新浪微博\footnote{http://www.weibo.com/}。
+\section{背景介绍}
+\subsection{Serverless 计算概述}
 
-在社交媒体的强覆盖下，新闻信息的传播渠道也悄然了发生变化。\cite{false_news_spread_2018}
+Serverless 计算是云计算的一种新模式，它可以动态地扩展和缩放计算资源，按需自动调配
+计算资源来运行业务代码。不同于传统的基础设施即服务（IaaS）和平台即服务（PaaS）模式，
+Serverless 模式管理和操作底层基础设施和服务器，使开发者可以专注于业务逻辑和代码
+的开发，无需管理服务器和基础架构。
 
-\subsection{定义、定理与引理等}
-\begin{definition}
-这是一条我也不知道在说什么的定义，反正我就是写在这里做个样子罢了，也没人会仔细读。\cite{周兴2017基于深度学习的谣言检测及模式挖掘}
-\end{definition}
+在 Serverless 模式下，资源由事件驱动自动调配，开发者只需编写并部署业务逻辑的代码
+（往往为小段的功能
+代码），并为其指定触发事件，云服务商会在事件发生时自动执行对应的代码段。开发者无需提
+前规划资源或
+服务器数量，也无需维护服务器及其运营。这大大降低了开发和维护成本，使开发者可以更专
+注于产品创新。
 
-\begin{theorem}
-这是一条我也不知道在说什么的定理，反正我就是写在这里做个样子罢了，也没人会仔细读。
-\end{theorem}
+主流云计算服务商都提供了 Serverless 产品和服务， 如 AWS Lambda， Azure Functions， 
+Google Cloud Functions 等。此类产品通过事件驱动执行无服务器代码段，并能够自动适配计算资源，
+为Serverless应用快速扩缩容提供支撑。目前，Serverless计算正快速发展，在云原生应用、微服务架构
+以及边缘计算等领域有着广泛的应用。
 
-\begin{axiom}
-这是一条我也不知道在说什么的公理，反正我就是写在这里做个样子罢了，也没人会仔细读。
-\end{axiom}
+作为云计算的一种新模式，Serverless 计算具有动态扩展、按需计费、自动运维等显著特点，
+大大降低了开发和维护成本，为应用的快速开发和创新提供了很好的支撑。其作为云计算发展的方向之一，
+值得持续关注和研究。 
 
-\begin{lemma}
-这是一条我也不知道在说什么的引理，反正我就是写在这里做个样子罢了，也没人会仔细读。
-\end{lemma}
+\subsection{自动伸缩的重要性与挑战}
 
-\begin{proposition}
-这是一条我也不知道在说什么的命题，反正我就是写在这里做个样子罢了，也没人会仔细读。
-\end{proposition}
+自动伸缩是Serverless计算模式下的一项关键功能。它能够动态地按需扩展或缩减计算资源，
+以适应工作负载的变化，从而提高资源利用率并优化成本。
 
-\begin{corollary}
-这是一条我也不知道在说什么的推论，反正我就是写在这里做个样子罢了，也没人会仔细读。
-\end{corollary}
+自动伸缩的重要性在于，在云环境下，工作负载往往是不可预测和突发的。在没有启用自动伸缩时，
+只能依赖于管理员静态预先配置计算资源来应对业务流量。由于无法准确预测
+工作负载的模式和峰值，静态预配计算资源很可能导致资源浪费，或无法满足工作负载的需求。
+动态扩展资源能够在负载增加时迅速提供更多的计算能力，而在需求下降时，也能够快速释
+放多余的资源，避免资源闲置。这可以显著提高整体资源利用率，并实现按需付费。
 
-\subsection{中英文文献、学位论文引用}
-根据美国皮尤研究中心的2017年9月发布的调查结果\cite{pew_news_use_2017}，67\%的美国民众会从社交媒体上获取新闻信息，其中高使用频率用户占20\%。在国内，中国互联网信息中心《2016年中国互联网新闻市场研究报告》\cite{internet_news_2016}也显示，社交媒体已逐渐成为新闻获取、评论、转发、跳转的重要渠道，在2016年下半年，曾经通过社交媒体获取过新闻资讯的用户比例高达90.7\%，在微信、微博等社交媒体参与新闻评论的比例分别为62.8\%和50.2\%。社交媒体正在成为网络上热门事件生成并发酵的源头，在形成传播影响力后带动传统媒体跟进报道，最终形成更大规模的舆论浪潮。\cite{Yang2012Automatic}
+自动伸缩也面临一些技术挑战。首先，自动伸缩系统需要准确而高效的负载监控和预测
+机制，以便能够及时发现负载变化并作出相应调整。其次，资源调度和扩展需要考虑成本优化
+和服务质量之间的平衡。此外，频繁的资源扩展和释放也会带来性能开销，因此需要进行优化
+以实现平滑的伸缩。最后，与传统的静态资源池相比，动态变化的资源拓扑也增加了运维的复杂性。
 
-在国内，新浪微博由于其发布方便、传播迅速、受众广泛且总量大的特点，成为了虚假信息传播的重灾区：《中国新媒体发展报告（2013）》\cite{唐绪军2013中国新媒体发展报告}显示，2012年的100件微博热点舆情案例中，有超过1/3出现谣言；《中国新媒体发展报告（2015）》\cite{唐绪军2015中国新媒体发展报告}对2014年传播较广、比较典型的92条假新闻进行了多维度分析，发现有59\%的虚假新闻首发于新浪微博。
+即便面临挑战，自动伸缩已经成为Serverless架构的关键。因此，未来工程师需要开发更智能的监控预
+警手段、更高效的资源调度算法以及更平滑的伸缩机制，以进一步发挥自动伸缩的优势。这也
+是Serverless计算进一步发展的重要方向之一。
 
-此等信息的传播严重损害了有关公众人物的名誉权，降低了社交媒体服务商的商业美誉度，扰乱了网络空间秩序，冲击着网民的认知，极易对民众造成误导，带来诸多麻烦和经济损失，甚至会导致社会秩序的混乱。针对社交媒体谣言采取行动成为了有关部门、服务提供商和广大民众的共同选择。\cite{周兴2017基于深度学习的谣言检测及模式挖掘}
+\section{研究目的与意义}
 
-\section{图表及其引用}
-此处引用了简单的表\ref{crowdwisdom_TMP}。
+本研究的目的是提出一种适用于Serverless计算的自动伸缩算法，它综合了多种可选算法,
+通过负载预测和资源调度策略实现计算资源的动态扩容和缩容,以满足工作负载的要求,
+保证Serverless应用的高性能、高可靠。 
 
-请注意，\LaTeX{}的图表排版规则决定了图表\textbf{不一定会乖乖呆在你插入的地方}，这是为了避免Word中由于图片尺寸不匹配在页面下部出现的的空白，所以请不要使用“下图”“下表”作为指向文字，应使用“图1-1所示”这样的表述。
-
-\begin{bupttable}{基于浏览者行为的特征}{crowdwisdom_TMP}
-
-    \begin{tabular}{l|l|l}
-		\hline \textbf{特征} & \textbf{描述} & \textbf{形式与理论范围}\\
-		\hline 点赞量 & 微博的点赞数量 & 数值，$\mathbb{N}$ \\
-		\hline 评论量 & 微博的评论数量 & 数值，$\mathbb{N}$ \\
-		\hline 转发量 & 微博的转发数量 & 数值，$\mathbb{N}$ \\
-		\hline
-    \end{tabular}
-\end{bupttable}
-
-此处引用了复杂的表\ref{complexcrowdwisdom_TMP}。
-
-
-\begin{bupttable}{基于浏览者行为的复杂特征}{complexcrowdwisdom_TMP}
-    \begin{tabular}{l|l|l|l}
-        \hline
-        \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{类别}}} & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{特征}}} & \multicolumn{2}{c}{\textbf{不知道叫什么的表头}} \\
-        \cline{3-4}
-        & & \multicolumn{1}{c|}{\textbf{描述}} & \multicolumn{1}{c}{\textbf{形式与理论范围}} \\
-        \hline
-        \multirow{3}{*}{正常互动} & 点赞量 & 微博的点赞数量 & 数值，$\mathbb{N}$ \\
-        \cline{2-4}
-        & 评论量 & 微博的评论数量 & 数值，$\mathbb{N}$ \\
-        \cline{2-4}
-        & 转发量 & 微博的转发数量 & 数值，$\mathbb{N}$ \\
-        \hline
-        非正常互动 & 羡慕量 & 微博的羡慕数量 & 数值，$\mathbb{N}$ \\
-        \hline
-    \end{tabular}
-\end{bupttable}
-
-此处展示了更专业的表\ref{tab:abbr_table}，一个好的表格没有竖线。
-% 请注意1）tabularx环境对多行文本的处理；2）booktabs宏包中支持的更粗的顶端和底端表格边界线，边界线与文本间更大的间距。
-\begin{bupttable}{红警2名词解释}{tab:abbr_table}
-    \begin{tabularx}{\textwidth}{llX}
-        \toprule
-        \textbf{术语类别} & \textbf{缩略语} & \textbf{解释} \\ \midrule
-        & 兵营 & 兵营（Barracks），《命令与征服\ 红色警戒2：尤里的复仇》游戏中的一种生产建筑，用以生产步兵单位 \\ \cmidrule(l){2-3}
-        & 建造场 & 建造场（Construction Yard），《命令与征服\ 红色警戒2：尤里的复仇》游戏中的一种基础建筑，用以支持其他建筑的建造 \\ \cmidrule(l){2-3}
-        & 矿厂 & 矿石精炼厂（Ore Refinery），《命令与征服\ 红色警戒2：尤里的复仇》游戏中的一种资源建筑，用以将矿车采集的矿石转化为游戏资金 \\ \cmidrule(l){2-3}
-        游戏 & 空指 & 空指部（Airforce Command Headquarters），《命令与征服\ 红色警戒2：尤里的复仇》游戏中的一种资源建筑，用以提供雷达功能和T2科技及生产部分空军单位 \\ \cmidrule(l){2-3}
-        & 相机 & 游戏术语，特指游戏内的观察区域和视角 \\ \cmidrule(l){2-3}
-        & 重工 & 战车工厂（War Factory），《命令与征服\ 红色警戒2：尤里的复仇》游戏中的一种生产建筑，用以生产载具单位 \\ \cmidrule(l){2-3}
-        & 战争迷雾 & 游戏术语，《命令与征服\ 红色警戒2：尤里的复仇》中指黑色的未探索区域 \\ \bottomrule
-    \end{tabularx}
-\end{bupttable}
-
-此处引用了一张图。图\ref{autoencoder_TMP}表示的是一个由含有4个神经元的输入层、含有3个神经元的隐藏层和含有4个神经元的输出层组成的自编码器，$+1$代表偏置项。
-
-%图片宽度设置为文本宽度的75%，可以调整为合适的比例
-\buptfigure[width=0.7\textwidth]{pictures/autoencoder}{自编码器结构}{autoencoder_TMP}
-
-%组图示例，已按照指导手册要求设计，由于子图数量不同，无法压缩成\buptfigure那样，大家对照示例即可
-\begin{figure}[!htbp]
-    \centering
-    \subfloat[]{ %[]对齐方式，t为top，b为bottom，留空即可
-	\label{Fig:R1} % 子图1标签名
-    	\includegraphics[width=0.45\textwidth]{pictures/autoencoder} %插入图片命令，格式为[配置]{图片路径}
-    }
-    \quad %空格
-    \subfloat[]{
-	\label{Fig:R2} % 子图2标签名
-    	\includegraphics[width=0.45\textwidth]{pictures/autoencoder}
-    }
-    \caption{这是两个自编码器结构，我就是排一下子图的效果：\protect\subref{Fig:R1}左边的自编码器，\protect\subref{Fig:R2}右边的自编码器} %注意须使用\protect\subref{}进行标号引用
-    \label{Fig:RecAccuracy} % 整个组图的标签名
-\end{figure}
-
-\section{公式与算法表示}
-
-\subsection{例子：基于主成分分析}
-
-\subsubsection{主成分分析算法}
-
-下面对主成分分析进行介绍。
-
-主成分分析是一种简单的机器学习算法，其功能可以从两方面解释：一方面可以认为它提供了一种压缩数据的方式，另一方面也可以认为它是一种学习数据表示的无监督学习算法。\cite{Goodfellow2016DeepLearning}
-通过PCA，我们可以得到一个恰当的超平面及一个投影矩阵，通过投影矩阵，样本点将被投影在这一超平面上，且满足最大可分性（投影后样本点的方差最大化），直观上讲，也就是能尽可能分开。
-
-对中心化后的样本点集$\bm{X}=\{\bm{x}_1,\bm{x}_2,\ldots,\bm{x}_i,\ldots,\bm{x}_m\}$（有$\sum_{i=1}^{m}\bm{x}_i = 0$），考虑将其最大可分地投影到新坐标系\ $\bm{W}= \{\bm{w}_1,\bm{w}_2,\ldots,\bm{w}_i,\ldots,\bm{w}_d\} $，其中$\bm{w}_i$是标准正交基向量，满足$\|\bm{w}_i\|_2 = 1$， $\bm{w}_i^T\bm{w}_j = 0$（$i \not= j$）。假设我们需要$d^\prime$（$d^\prime < d$）个主成分，那么样本点$\bm{x}_i$在低维坐标系中的投影是$\bm{z}_i = (z_{i1};z_{i2};\ldots;z_{id^\prime})$，其中$z_{ij} = \bm{w}_j^\mathrm{T}\bm{x}_i$，是$\bm{x}_i$在低维坐标系下第$j$维的坐标。
-对整个样本集，投影后样本点的方差是
-\begin{equation}
-\begin{aligned}
-    & \frac{1}{m}\sum_{i=1}^m \bm{z}_i^\mathrm{T}\bm{z}_i \\
-= & \frac{1}{m}\sum_{i=1}^m (\bm{x}_i^\mathrm{T}\bm{W})^\mathrm{T}(\bm{x}_i^\mathrm{T}\bm{W}) \\
-= & \frac{1}{m}\sum_{i=1}^m \bm{W}^\mathrm{T}\bm{x}_i\bm{x}_i^\mathrm{T}\bm{W} \\
-= & \frac{1}{m} \bm{W}^\mathrm{T}\bm{X}\bm{X}^\mathrm{T}\bm{W} \\
-\end{aligned}
-\end{equation}
-
-由于我们知道新坐标系$\bm{W}$的列向量是标准正交基向量，且样本点集$\bm{X}$已经过中心化，则PCA的优化目标可以写为
-\begin{equation}
-\label{PCA_goal_TMP}
-\begin{aligned}
-& \max_{\substack{\bm{W}}}  &  tr(\bm{W}^\mathrm{T}\bm{X}\bm{X}^ \mathrm{T}\bm{W}) \\
-& \operatorname{ s.t. }  &  \bm{W}^\mathrm{T}\bm{W} = \bm{I} \\
-\end{aligned}
-\end{equation}
-
-由于$\bm{X}\bm{X}^ \mathrm{ T }$是协方差矩阵，那么只需对它做特征值分解，即
-\begin{equation}
-\label{PCA_eigenvalue}
-\bm{X}^ \mathrm{ T }\bm{X} = \bm{W}\bm{\Lambda}\bm{W}^ \mathrm{ T } \\
-\end{equation}
-其中$\bm{\Lambda}=diag(\bm{\lambda})$，$\bm{\lambda} = \{\lambda_1,\lambda_2,\ldots,\lambda_m\}$。
-
-具体地，考虑到它是半正定矩阵的二次型，存在最大值，可对\eqref{PCA_goal_TMP}使用拉格朗日乘数法
-\begin{equation}
-\bm{X}\bm{X}^ \mathrm{ T }\bm{w}_i  = \lambda_i \bm{w}_i \\
-\end{equation}
-
-之后将求得的特征值降序排列，取前$d^\prime$个特征值对应的特征向量组成所需的投影矩阵$\bm{W}^\prime =(\bm{w}_1,\bm{w}_2,\ldots,\bm{w}_{d^\prime})$，即可得到PCA的解。PCA算法的描述如算法\ref{PCA_algorithm}所示。
-
-\begin{algorithm} 
-	\begin{spacing}{1.3}
-		\floatname{algorithm}{算法}
-		\caption{主成分分析（PCA）} 
-		\label{PCA_algorithm}
-		\renewcommand{\algorithmicrequire}{\textbf{输入：}}
-		\renewcommand{\algorithmicensure}{\textbf{输出：}} 
-		\begin{algorithmic}[1] 
-			\Require 样本集$\bm{x}=\{\bm{x}_1,\bm{x}_2,\ldots,\bm{x}_i,\ldots,\bm{x}_m\}$，低维空间维数$d^\prime$ 
-			\Ensure 投影矩阵  $\bm{W}^\prime =(\bm{w}_1,\bm{w}_2,\ldots,\bm{w}_{d^\prime})$
-			\State 对所有样本中心化$\bm{x}_i \gets \bm{x}_i - \frac{1}{m}\sum_{i=1}^m \bm{x}_i$
-			\State  计算样本的协方差$\bm{X}\bm{X}^ \mathrm{T}$
-			\State 对协方差矩阵$\bm{X}\bm{X}^ \mathrm{T}$做特征值分解
-			\State 取最大的$d^\prime$个特征值所对应的特征向量$\bm{w}_1,\bm{w}_2,\ldots,\bm{w}_{d^\prime}$
-		\end{algorithmic}  
-	\end{spacing}
-\end{algorithm}
-
-\subsubsection{主成分分析可信度评估方法}
-记待判定微博$\bm{w}_0$的经典特征向量为$\bm{f}^{c}_{0}$，它的发布者在$\bm{w_0}$前发布的$k$条微博为$\bm{W} = \bm{w}_1,\bm{w}_2,\ldots,\bm{w}_k$，这$k$条微博对应的经典特征向量集为$\bm{F}^{c}_{W} = \{ \bm{f}^{c}_{1},\bm{f}^{c}_{2},\ldots,\bm{f}^{c}_{k} \}$。令$label = 1$代表谣言，$label = 0$代表非谣言。算法的具体流程如算法\ref{PCA_model}所示。
-
-\begin{algorithm}
-	\begin{spacing}{1.3}
-		\floatname{algorithm}{算法}
-		\caption{基于PCA的信息可信度评估} 
-		\label{PCA_model}
-		\renewcommand{\algorithmicrequire}{\textbf{输入：}}
-		\renewcommand{\algorithmicensure}{\textbf{输出：}} 
-			\begin{algorithmic}[1] 
-				\Require $\bm{f}^{c}_{0}$，$\bm{F}^{c}_{W}$，保留主成分数$n$
-				\Ensure 标签$label\in \{0,1\}$
-				\State 对所有特征向量应用PCA，保留前$n$个主成分$\bm{o}^{c}_{i} \gets PCA(\bm{f}^{c}_{i}, n)$（$i = 0,1,\ldots,k$）
-				\State 计算$\bm{F}^{c}_{W}$中各向量的平均距离$\mu$和标准差$\sigma$
-				\State 计算阈值$thr = {\mu} / {\sigma}$
-				\If {$\min_{1<j\le k} \|\bm{o}^{c}_{0} - \bm{o}^{c}_{j} \|_2 > thr$}
-					\State $ label \gets 1 $
-				\Else
-					\State $ label \gets 0 $
-				\EndIf
-			\end{algorithmic}
-	\end{spacing}
-\end{algorithm}
-
-\section{代码表示}
-
-%据悉以下语言被lstlisting支持：Awk, bash, Basi4, C#, C++, C, Delphi, erlang, Fortran, GCL, Haskell, HTML, Java, JVMIS, Lisp, Logo, Lua, make, Mathematica, Matlab, Objective C , Octave, Pascal, Perl, PHP, Prolog,  Python, R, Ruby, SAS, Scilab, sh, SHELXL, Simula, SQL, tcl, TeX, VBScript, Verilog, VHDL, XML, XSLT
-%遗憾的是，JavaScript不被支持，请上网搜索支持该语言的方法
-
-\subsection{直接书写代码在.tex中}
-下面的代码\ref{plus}是用Python编写的加法函数。
-
-\begin{lstlisting}[language=Python, caption=加法, label=plus, tabsize=2]  
-def plusFunc(a, b):
-	return a + b 
-\end{lstlisting}  
-
-\subsection{引用代码文件}
-下面的代码\ref{recursion}是用Python文件中引入的倒序打印$x$到$1$的函数，请查看code文件夹。
-
-\lstinputlisting[language=Python, caption=倒序打印数字, label=recursion, tabsize=2]{code/recursion.py}
-
-\section{列表样式}
-
-\subsection{使用圆点作为项目符号}
-
-\begin{itemize}
-\item \textbf{第一章为基础模块示例}，是的，本章的名字就是基础模块示例，正如你看到这个样子。
-\item \textbf{第二章为不存在}，是的，其实它不存在。
-\end{itemize}
-
-\subsection{使用数字作为项目符号}
+展开来说，本研究具有如下具体目标：
 
 \begin{enumerate}
-\item \textbf{第一章为基础模块示例}，是的，本章的名字就是基础模块示例，正如你看到这个样子。
-\item \textbf{第二章为不存在}，是的，其实它不存在。
+
+	\item \textbf{实现应用自动伸缩的智能化。}不同于现有的阈值触发式自动
+	伸缩机制,本研究通过采用时间序列模型进行短期负载预测,实现了基于预测的自动伸缩决策,更加
+	智能和灵活。随着实际负载数据积累,模型也可以动态优化和调整。  
+
+	\item \textbf{提高应用的资源利用率和运行稳定性。}
+	通过负载预测机制,可以更加
+	精确地预测工作负载的变化,并相应调整计算资源,避免资源浪费或不足,保证服务质量。
+	从而可以降低 Serverless 应用的运行成本,并提高其可靠性。
+
+	\item \textbf{提供实际平台上的部署和运维的参考实现。}
+	通过设计一套基于 Prometheus 监控和预警机制,收集 Serverless 应用的监控指标,
+	并将数据输入预测模型进行负载预测和自动伸缩决策,这为 Serverless 应用在Kubernetes上的实施提供了参考案例。
 \end{enumerate}
 
-\subsection{句中数字编号列表样式}
+本研究希望在实现算法的同时提供可落地的技术方案，为其进一步推广应用提供了理论和技术支撑。
 
-\begin{enumerate*}
-    \item \textbf{第一章为基础模块示例}，是的，本章的名字就是基础模块示例，正如你看到这个样子；
-    \item \textbf{第二章为不存在}，是的，其实它不存在。
-\end{enumerate*}
+\chapter{相关工作与理论基础}
 
-\chapter{为了目录撑到第二页}
-\section{我不得不再添加一点内容}
-\section{尽管这些章节一点正文都没有}
-\section{是的}
-\section{真的没有}
-\section{我已经不知道说什么了}
-\section{如果有，我们就祝愿一下学校教务处什么时候转变一下思维}
-\section{把控制格式这种事情往前做}
-\section{不要总是觉得折磨学生是合理的}
-\section{你拿着教学管理岗位的工资}
-\section{你需要折磨一下你自己才对}
-\section{不要觉得我对别人要求太高，对自己太低}
-\section{我对自己要求低的话也不至于想要修订这份模板}
+Serverless 计算是一种无服务器的计算模型，它允许开发者构建和运行应用程序而无需关注基础设施。
+在 Serverless 架构中，第三方服务（如云提供商）负责管理服务器、网络和其他资源。
+这样，开发者可以专注于编写应用程序逻辑，而无需担心基础设施的维护和扩展。本章节将介绍
+Serverless 计算的基本原理和特点，以及相关的研究工作。
+
+\section{Serverless 计算的基本原理与特点}
+
+从用户的角度来看，Serverless 计算是一种弹性、按需付费、无状态的计算模型。
+
+\begin{enumerate}
+	\item\textbf{自动弹性伸缩}：Serverless 应用程序可以根据负载自动调整资源，从而实现高效的资源利用率和低延迟。
+	\item\textbf{按需付费}：与预先分配资源的传统计算模型不同，Serverless 计算按实际使用的资源付费，降低了成本。
+	\item\textbf{无状态性}：Serverless 函数通常是无状态的，这意味着它们不会存储任何关于之前请求的信息。这使得 Serverless 函数易于扩展和管理。
+\end{enumerate}
+
+而从研发者的角度，Serverless 计算是一种基于事件驱动的、无服务器的计算模型。
+
+在云服务平台实现 Serverless
+计算的方式各异。常见的实现载体包括容器化（Containerization）、虚拟化（Virtualization）。
+例如，AWS Lambda 采用基于 KVM 的虚拟化技术 \cite{jumpertz2020how}。
+
+OpenFaaS（Open Function as a Service）是一个开源的 Serverless 
+计算平台，
+它允许开发者在 Kubernetes 集群上轻松部署和管理函数。Kubernetes 是一个用于自动部署、
+扩展和管理容器化应用程序的开源平台。
+
+OpenFaaS 通过以下组件实现 Serverless 计算\cite{openfaas_design_2023}：
+
+\begin{enumerate}
+	\item\textbf{Gateway}：负责处理请求、调度函数、管理函数生命周期，以及提供 API 和仪表板。
+	\item\textbf{Function Watchdog}：作为每个函数的入口点，用于将传入的 HTTP 请求转发到函数。
+	\item\textbf{Function Pods}：包含函数代码和依赖的容器，它们根据负载自动扩展。
+\end{enumerate}
+
+在 Kubernetes 集群上部署 OpenFaaS 具有以下优点：
+
+\begin{enumerate}
+	\item\textbf{原生集成}：OpenFaaS 利用 Kubernetes 的功能，如自动扩展、滚动更新和自动恢复。
+	\item\textbf{跨平台支持}：Kubernetes 支持多种云提供商和操作系统，这意味着 OpenFaaS 可以在多个平台上运行。
+	\item\textbf{可观测性和监控}：OpenFaaS 可以与 Kubernetes 监控和日志记录工具（如 Prometheus 和 Grafana）集成
+\end{enumerate}
+
+\section{Serverless 计算与自动伸缩方法概述}
+
+
+自动伸缩是一种在计算资源需求变化时，动态调整计算资源分配的方法。现有的自动伸缩方法包括基于
+单一指标伸缩、手动收缩、根据历史定时伸缩和多指标阈值收缩等。
+
+现有这些方法各自有其优点，但在实际应用中均有局限性。
+
+\begin{enumerate}
+
+\item\textbf{基于单一指标伸缩}：该方法根据某个指标，如CPU使用率或内存使用率等，来调整计算资源。缺点在于，
+弹性调整速度较慢，可能无法适应突发流量，导致服务性能下降。此外，如果所选指标不准确或阈值设置不合理，可能会导致资源浪费或不足。
+
+\item\textbf{手动收缩}：在流量突发时，手动扩展计算资源以满足需求。缺点在于，这种方法响应慢，危险性高，因为在
+高峰期可能无法及时扩展资源。此外，手动收缩无法实现精细化操作，可能导致资源使用效率低下。
+
+\item\textbf{映射历史伸缩}：通过观察周期性，复制历史的收缩曲线，调整计算资源。这种方法无法适应弹性业务需求，
+对于实时响应突发流量的能力有限。同时，无法追踪到历史数据中的趋势性变化，可能导致资源分配不合理。
+
+\item\textbf{多指标阈值收缩}：在这种方法中，根据多个指标和预设阈值调整计算资源。尽管这种方法相对于其他方
+法更为精确，但其效果取决于指标选取和阈值设定。若未充分考虑这些因素，可能会影响系统性能，导致资源分配不合理。
+并且依旧无法考虑到业务发展的趋势性。
+
+\end{enumerate}
+
+可观察到，现有的自动伸缩方法均存在不足，无法在不同场景下完美适应需求。因此，需要进一步研究
+和发展更为智能、灵活的自动伸缩策略，以满足多样化的计算资源需求。
+
+
+\section{工作量预测方法}
+
+为了保证 Serverless 应用程序在业务中的可靠性，应当设计一种有效的自动伸缩算法。为此，我们采用了基于工作量的 Serverless 计算自动伸缩算法，结合负载预测和自动伸缩策略。在本节中，我们将详细介绍三种工作量预测方法：移动平均（MA）、向量自回归（VAR）以及差分整合移动平均自回归（ARIMA）模型。
+
+\subsection{MA（移动平均，作为基线方法）}
+
+移动平均（Moving Average，简称 MA）是一种简单的时间序列预测方法，它通过计算一定时间窗口内的平均值来预测未来的数据。在 Serverless 计算的负载预测中，可以采用 MA 方法来预测未来一段时间内的工作量。给定一个时间序列数据集 $\{x_1, x_2, \ldots, x_n\}$，移动平均法用长度为 $m$ 的滑动窗口来计算序列的平均值，计算公式如下：
+
+\begin{equation}
+\hat{x}_{n+1} = \frac{1}{m}\sum_{i=n-m+1}^{n}x_i
+\end{equation}
+
+MA 方法简单易实现，但其预测精度受到时间窗口长度的影响，较长的时间窗口可能导致预测滞后，较短的时间窗口可能导致预测不稳定。
+
+我们选择移动平均作为基准线方法的原因在于，首先它简单易实现：相较于其他复杂的预测方法，移动平均法的实现过程非常简单。只需要计算一定时间窗口内的数据平均值，无需涉及复杂数学模型。这使得移动平均方法易于理解和快速实现。
+其次，它拥有低计算成本。移动平均法的计算复杂度较低，不需要进行复杂的参数估计和优化。这意味着移动平均法在计算资源有限的场景下，仍然能够保持较好的预测性能。
+再者，移动平均法具有很好的平滑效果，能够有效消除短期的波动和噪声，使预测结果更加稳定。这对于某些具有高噪声或波动性的场景（如负载预测）来说，是非常有价值的。
+
+\subsection{VAR（向量自回归）}
+
+向量自回归（VAR）模型是一种用于多变量时间序列数据的预测方法。VAR 模型通过将每个时间序列作为其他时间序列的滞后值（lagged values）的线性函数来进行建模。VAR 模型具有预测多元时间序列变量之间关系的优势，可以捕捉变量间的动态相互影响。
+
+假设我们有 $n$ 个时间序列数据 $y_t = (y_{1t}, y_{2t}, \cdots, y_{nt})$，则 $p$ 阶 VAR 模型可表示为：
+
+\begin{equation}
+y_t = c + A_1 y_{t-1} + A_2 y_{t-2} + \cdots + A_p y_{t-p} + e_t
+\end{equation}
+
+其中，$t = 1, 2, \cdots, T$，$c$ 是一个 $n$ 维常数向量，$A_i$ 是一个 $n \times n$ 维系数矩阵，$e_t$ 是一个 $n$ 维误差向量，满足 $E(e_t) = 0$ 且协方差矩阵为常数矩阵，即 $E(e_t e_t') = \Sigma$，$E(e_t e_{t-j}') = 0$ 对于所有的 $j \neq 0$。
+
+举个例子，为了预测 Serverless 计算的工作量，我们首先需要收集多元时间序列数据，例如请求数、响应时间和 CPU 使用率等。接着可以使用 VAR 模型来预测未来的工作量。
+
+假设我们有三个时间序列数据：请求数 $x_t$、响应时间 $y_t$ 和 CPU 使用率 $z_t$，可以构建一个二阶 VAR 模型如下：
+
+\begin{equation}
+\begin{bmatrix}
+x_t \
+y_t \
+z_t
+\end{bmatrix} =
+c + A_1
+\begin{bmatrix}
+x_{t-1} \
+y_{t-1} \
+z_{t-1}
+\end{bmatrix} +
+A_2
+\begin{bmatrix}
+x_{t-2} \
+y_{t-2} \
+z_{t-2}
+\end{bmatrix} + e_t
+\end{equation}
+
+通过拟合此 VAR 模型，可以预测未来的工作量，从而为 Serverless 计算提供合适的自动伸缩策略。
+
+\subsection{ARIMA（自回归差分移动平均）}
+
+
+ARIMA（Autoregressive Integrated Moving Average，自回归差分移动平均）是一种广泛应用于时间序列预测的方法。ARIMA 模型由三个主要部分
+组成：自回归（AR），差分（I）和移动平均（MA）。
+
+给定一个时间序列数据 $y_t$，ARIMA 模型表示为\cite{arima_demand_forecast_2019}：
+
+\begin{equation}
+\Phi(B)(1-B)^d y_t = \Theta(B) e_t
+\end{equation}
+
+其中，$B$ 是后向移位算子（即 $B y_t = y_{t-1}$），$d$ 是差分阶数，$\Phi(B)$ 和 $\Theta(B)$ 分别是 $p$ 阶自回归多项式和 $q$ 阶移动平均多项式，形式如下：
+
+\begin{equation}
+\Phi(B) = 1 - \phi_1 B - \phi_2 B^2 - \cdots - \phi_p B^p
+\end{equation}
+
+\begin{equation}
+\Theta(B) = 1 - \theta_1 B - \theta_2 B^2 - \cdots - \theta_q B^q
+\end{equation}
+
+可以将 ARIMA 模型表示为 ARIMA$(p, d, q)$，其中 $p$ 是自回归项的阶数，$d$ 是差分的阶数，$q$ 是移动平均项的阶数。
+
+为了预测 Serverless 计算的工作量，我们首先需要选择合适的
+ $p$、$d$ 和 $q$ 参数。可以通过观察时间序列
+ 的自相关图（ACF）和偏自相关图（PACF）来确定这些参 \cite{hyndman_forecasting_2018}
+ ，或者使用自动参数选择方法，如 Akaike Informatio
+ n Criterion (AIC) 或 Bayesian Information Criterion (BIC)。
+
+例如，假设我们选择了 ARIMA$(2, 1, 1)$ 模型来预测请求数量 $x_t$，模型可以表示为：
+
+\begin{equation}
+(1 - \phi_1 B - \phi_2 B^2)(1-B) x_t = (1 - \theta_1 B)e_t
+\end{equation}
+
+通过拟合此 ARIMA 模型，可以预测未来的工作量，从而为 Serverless 计算提供合适的自动伸缩策略。
+
+为了提高预测的准确性，可以结合 MA、VAR 和 ARIMA 模型进行预测和性能对比，
+根据实际情况选择合适的方法。
+
+% \section{与本文研究相关的先前工作}
+\subsection{Prophet}
+
+\subsubsection{简介}
+
+Prophet是由Facebook的核心数据科学团队开发的开源算法，专门用于进行时
+间序列预测。它设计的目标是使得时间序列预测对于业务问题更加适用，包括
+那些存在一些实际的、复杂的趋势的问题，如周期性变化、季节性效应和假日效应等。\cite{doi:10.1080/00031305.2017.1380080}
+
+\subsubsection{模型原理}
+
+Prophet模型基于分解的时间序列预测方法，主要包括三个成分：
+趋势(Trend)、季节性(Seasonality)和假日效应(Holidays)。趋
+势部分旨在捕获数据中的长期趋势，季节性部分则用来捕获周期性模式
+，而假日效应则针对不规则的事件，例如公众假日或其他特殊事件。
+
+这种分解方法基于以下的加法模型：
+
+\begin{equation}
+y(t) = g(t) + s(t) + h(t) + \epsilon_t
+\end{equation}
+
+其中，$y(t)$ 是观测值，$g(t)$ 是趋势成分，$s(t)$ 是季节性成分，$h(t)$ 是假日效应，$\epsilon_t$ 是误差项。
+
+\textbf{趋势成分 $g(t)$：} Prophet模型假设趋势成分可以通过非线性函数进行适应，而这个非线性函数的形状由数据的变化点决定。在这种设置下，趋势可以在变化点灵活地改变其增长速率。具体来说，对于没有饱和上限和下限的趋势，Prophet使用以下的分段线性模型：
+\begin{equation}
+g(t) = \left( k + \sum_{i=1}^{S} a_i 1(t>\tau_i) \right) t + \left( m + \sum_{i=1}^{S} b_i 1(t>\tau_i) \right)
+\end{equation}
+
+其中，$S$ 是变化点的数量，$\tau_i$ 是第 $i$ 个变化点的位置，$a_i$ 和 $b_i$ 是在第 $i$ 个变化点的增长率和偏移量的变化。$k$ 和 $m$ 是初始化的增长率和偏移量。
+
+\textbf{季节性成分 $s(t)$：} Prophet模型采用傅里叶级数来适应季节性效应，可以捕获不同周期的季节性变化。具体来说，年度和周度季节性模式可以通过以下傅里叶级数进行建模：
+\begin{equation}
+s(t) = \sum_{n=1}^{N} \left( a_n \cos\left(\frac{2\pi nt}{P}\right) + b_n \sin\left(\frac{2\pi nt}{P}\right) \right)
+\end{equation}
+
+其中，$P$ 是季节性周期，$N$ 是傅里叶级数的阶数，$a_n$ 和 $b_n$ 是要估计的参数。
+
+\textbf{假日效应 $h(t)$：}
+
+在许多实际应用中，特定的日期或事件（如公众假期，特定的营销活动或其他特殊事件）可能会对时间序列产生显著影响。这些影响可以被视为"假日效应"，它们会在特定日期或事件期间突然改变时间序列的行为。
+
+这种假日效应可以通过添加额外的回归项来建模。具体来说，对于每一个假日，都会创建一个指示函数，该函数在假日期间为1，其他时间为0。然后，这个指示函数与一个回归系数相乘，该系数表示假日的影响强度。所有的假日效应可以表示为：
+
+\begin{equation}
+h(t) = \sum_{i=1}^{H} k_i 1(t \in D_i)
+\end{equation}
+
+其中，$H$ 是假日的数量，$D_i$ 是第 $i$ 个假日的日期，$k_i$ 是对应的回归系数，$1(·)$ 是指示函数。
+
+假日效应的参数 $k_i$ 是通过模型拟合过程中的数据来估计的。由于假日效应可能在不同的假日之间有所不同，每个假日都有自己的回归系数。
+
+在实际应用中，用户需要提供一个假日的列表，并指定每个假日的日期。此外，用户还可以为每个假日设置一个“窗口”，表示假日效应可以影响的日期范围。
+
+\subsubsection{贝叶斯推断和参数估计}
+
+Prophet模型对模型参数的估计是基于贝叶斯推断的。这意味着我们不仅仅是找到一个最优的参数值，而是要找到参数的概率分布，这样我们就可以考虑到参数估计的不确定性。
+
+贝叶斯推断的基本思想是结合先验知识和观测数据来估计模型参数。对于每一个参数，应当指定一个先验分布，这个分布表示了在观测数据之前我们对参数的信念。然后，我们使用观测数据来更新这个信念，得到参数的后验分布。
+
+在Prophet模型中，我们对每一个参数$\theta$（可以是趋势、季节性或假日效应的参数）的先验分布$p(\theta)$做出某些假设。然后，我们使用观测数据$y$来计算参数的似然函数$L(\theta | y)$，这个函数表示在给定参数$\theta$的情况下，观测数据$y$的概率。最后，我们使用贝叶斯定理来计算参数的后验分布：
+
+\begin{equation}
+p(\theta | y) = \frac{L(\theta | y) p(\theta)}{p(y)}
+\end{equation}
+
+在这个公式中，$p(y)$是观测数据的概率，我们通常不直接计算这个值，而是通过对参数的所有可能值的后验分布进行归一化来得到。
+
+在实际的计算中，由于后验分布可能是复杂的，我们通常使用马尔科夫链蒙特卡洛（MCMC）方法\cite{10.2307/23059158}或者变分贝叶斯方法\cite{tran2021practical}来近似计算后验分布。
+
+此处，参数的先验分布通常是正态分布或者拉普拉斯分布，这取决于我们对参数的先验知识。例如，如果我们认为一个参数应该接近0，那么可以选择均值为0的正态分布作为先验分布。
+
+
+\chapter{算法的设计与实现}
+
+算法的设计和实现，需要基于对时间序列数据的特性和规律的分析和建模。
+这些特性包括趋势、季节性、周期性、自相关性等。基于这些特性，可以设计出各种不同的时间序列预测算法。
+前文已经介绍了本研究将采用的预测算法，在实际使用时间序列预测算法进行预测之前，原始的数据
+可能存在缺失值和异常值、数据的格式不规范等问题。应当对数据进行预处理。在此之后基于标准化后的数据
+应用具体的算法。整体设计思路如图 \ref{fig:algo-process} 所示。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/algo-process.png}
+	\caption{时序算法预测流程}
+	\label{fig:algo-process}
+  \end{figure}
+
+\section{准备工作}
+\subsection{数据收集与预处理}
+
+数据收集和预处理是时间序列预测任务的关键步骤，可以确保我们拥有无缺失值、无异常值、可靠和有代表性的数据，
+以便进行准确的预测。在本研究中，我们使用 Binance 数字货币交易所交易 API 调用历史数据公
+开数据集作为数据来源。
+
+
+我们从 Binance 提供的公开数据集中获取交易 API 调用历史数据。原始数据以 zip 格式存储，
+每日一个文件。对于每个文件，解压后得到一个 csv 文件，在这个 csv 文件中，
+每行代表一次交易调用记录。数据包含多个字段，其中 time 字段表示调用发生的时间，单位为毫
+秒时间戳。其余字段本研究不涉及。
+
+为便于分析和预测，应当对原始数据进行预处理。首先，将毫秒时间戳转换为秒时间戳，以
+便于后续处理。接着，对数据进行聚合处理，将每个小时内的调用次数汇总，生成一个新的数据集。
+新数据集包含两列：time 和 event\_count。其中，time 代表小时所在的秒时间戳，
+event\_count 代表该小时时间段内的调用次数。
+
+
+预处理的具体步骤如下：
+
+\begin{enumerate}
+
+\item 加载原始数据集。
+\item 按小时对数据进行分组聚合，计算每个小时内的调用次数。
+\item 将 time 字段的毫秒时间戳转换为秒时间戳。
+\item 生成新的数据文件，每个文件是一天的调用统计，包含 time 和 event\_count 两列。
+\item 将每个月的所有文件聚合为一个文件
+
+\end{enumerate}
+
+经过上述预处理步骤，我们得到了一个无缺失值、无异常值、有序的数据集。
+
+\subsection{特征工程}
+
+特征工程是机器学习和预测任务中的重要环节，可以提取有意义的信息以提高预测性能。由于调用频次与时间通常有较强的相关性，我们从时间戳中提取 weekday 和 hour 两列特征。
+
+% \begin{itemize}
+% \item {\bf 图 1}: plot_event_count_by_time.png \
+% 此图展示不同时间点的调用次数分布。
+
+% \item {\bf 图 2}: plot_event_count_by_hour.png \
+% 此图展示一天中不同小时的调用次数分布。
+
+% \item {\bf 图 3}: plot_event_count_by_weekday.png \
+% 此图展示一周中不同天（周一至周日）的调用次数分布。
+
+% \item {\bf 图 4}: plot_correlation_matrix.png \
+% 此图展示 time、event_count、weekday 和 hour 之间的相关性矩阵。
+
+% \end{itemize}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/plot_event_count_by_time.png}
+	\caption{事件计数随时间变化图}
+	\label{fig:event_count_by_time}
+  \end{figure}
+  
+  \begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/plot_event_count_by_hour.png}
+	\caption{事件计数分布（按小时）}
+	\label{fig:event_count_by_hour}
+  \end{figure}
+  
+  \begin{figure}[htbp]
+	\centering
+	\subfloat[事件计数分布图（按 weekday）]{ %第一个子图
+	\includegraphics[width=0.45\textwidth]{images/plot_event_count_by_weekday.png}
+	\label{fig:event_count_by_weekday}
+	}
+	\hfill %间距
+	\subfloat[相关性矩阵图]{ %第二个子图
+	\includegraphics[width=0.45\textwidth]{images/plot_correlation_matrix.png}
+	\label{fig:correlation_matrix}
+	}
+	\caption{weekday 分布和相关性矩阵} %整个图的标题
+	\label{fig:both} %整个图的标签名
+	\end{figure}
+  
+	图\ref{fig:event_count_by_time}展示不同时间点的调用次数分布，可直观观察到数据并非
+	噪声或随机游走，而是存在一定的规律性，因此存在被预测的可能。
+	图\ref{fig:event_count_by_hour}展示一天中不同小时的调用次数分布，可直观观察到存在峰值时段和谷值时段。
+	图\ref{fig:event_count_by_weekday}展示一周中不同天（周一至周日）的调用次数分布。
+	图\ref{fig:correlation_matrix}展示 time、event\_count、weekday 和 hour 之间的相关性矩阵。
+
+通过分析上述图表和相关性矩阵，可以发现调用次数与 weekday 和 hour 特征具有一定的相关性。这些特征将有助于我们建立更准确的工作量预测模型。
+
+\begin{table}[tbp]
+	\centering
+	\caption{自相关和偏自相关在不同滞后阶数的值}
+	\label{table:autocorrelation}
+	\begin{tabular}{c|c|c}
+	\hline
+	\textbf{滞后阶数（Lags）} & \textbf{自相关性（Autocorrelation）} & \textbf{偏自相关性（PACF）} \\
+	\hline
+	0  & 1.00 & 1.00 \\
+	1  & 0.60 & 0.60 \\
+	2  & 0.44 & 0.13 \\
+	3  & 0.34 & 0.06 \\
+	4  & 0.29 & 0.06 \\
+	5  & 0.27 & 0.07 \\
+	6  & 0.24 & 0.03 \\
+	7  & 0.19 & -0.02 \\
+	8  & 0.16 & 0.01 \\
+	9  & 0.16 & 0.04 \\
+	10 & 0.18 & 0.06 \\
+	11 & 0.16 & -0.00 \\
+	12 & 0.16 & 0.04 \\
+	13 & 0.16 & 0.03 \\
+	14 & 0.12 & -0.03 \\
+	15 & 0.11 & -0.00 \\
+	16 & 0.11 & 0.03 \\
+	17 & 0.13 & 0.04 \\
+	18 & 0.17 & 0.07 \\
+	19 & 0.18 & 0.04 \\
+	20 & 0.17 & 0.01 \\
+	21 & 0.18 & 0.04 \\
+	22 & 0.21 & 0.08 \\
+	23 & 0.24 & 0.07 \\
+	24 & 0.27 & 0.07 \\
+	\hline
+	\end{tabular}
+	\end{table}
+	
+
+\subsection{模型选择与评估}
+
+在本文中，我们采用了 MA、VAR、ARIMA、Prophet 四种时间序列模型来进行负载预测。相较于基于神经
+网络的机器学习模型，
+我们选择此类统计学模型的原因主要有以下方面：
+
+第一，时间序列模型适用于具有时间依赖性的数据，可以更好地捕捉数据的周期性、趋势性和季节性等特
+征。在 Serverless 计算中，负载数据通常具有时间相关性，因此时间序列模型是一种自然的选择。
+
+第二，时间序列模型具有可解释性和可靠性，可以更好地理解模型的运作原理，评估模型的准确性和稳定
+性。对于负载预测来说，准确性和稳定性是至关重要的，因此时间序列模型可以为我们提供更可靠的负载
+预测结果。
+
+最后，非常重要的一点是，时间序列模型相较于机器学习模型，需要的数据量更小，模型训练和预测速度
+更快。在 Serverless 计算中，资源的快速响应是至关重要的，而历史数据量往往只有几个星期，使用
+机器学习模型难以较好收敛，因此时间序列模型可以更快地生成负载预测结果，以满足 Serverless 
+应用程序对计算资源的实时需求。
+
+本研究选择的各模型各有特点。MA（Moving Average）模型
+主要用于捕捉负载数据的短期波动性，本研究选择其作为基准（Baseline）模型。
+VAR（Vector Autoregression）
+模型则可以同时考虑多个变量之间的相互作用，从而验证时间中提取的特征是否能改善预测效果，ARIMA
+（Autoregressive Integrated Moving Average）模型则是一种广泛
+应用的时间序列模型，可以同时考虑趋势、周期和季节性等因素，并且能够自动从数据中学习到这些因素，
+相比 VAR 在保证训练效率的前提下，更加智能。Prophet 则是一个更加新颖的模型，能够考虑到节假日等因素的影响
+。通过多种模型的组合和比较，从而在实际应用选择最适合负载预测的模型。
+
+\section{自动伸缩算法设计与实现}
+\subsection{MA 模型}
+
+MA（Moving Average），即移动平均模型是一种常用的时间序列模型，用于捕捉负载数据的短期波动性。
+在本文中，本研究将 MA 模型作为基准模型（Baseline Model）来进行负载预测，以评估其他模型的优劣性。
+
+具体地，本研究采用了 WIN\_SIZE=3 的 MA 模型来进行负载预测。将历史数据按照 WIN\_SIZE 划分成若干个时间窗口，每个时间窗口内的数据点的平均值被用来作为该时间窗口的预测值。通过这样的方式，可以捕捉负载数据的短期波动性，同时减少数据的随机波动性。
+
+为了评估 MA 模型（以及后续其他模型）的预测性能，本研究使用均方误差（Mean Squared Error）、
+均方根误差（Root Mean Squared Error）、平均绝对误差（Mean Absolute Error）、
+平均绝对百分比误差（Mean Absolute Percentage Error）和对称平均绝对百分比误差
+（Symmetric Mean Absolute Percentage Error）等指标来评估模型的预测准确性和
+稳定性。在 WIN\_SIZE=3 的情况下，我们得到了 \ref*{table:ma_regression_metrics} 
+所示模型预测性能。
+
+\begin{table}[tbp]
+\centering
+\caption{MA 模型评测指标}
+\label{table:ma_regression_metrics}
+\begin{tabular}{c|c}
+\hline
+\textbf{指标} & \textbf{数值} \\
+\hline
+MSE & 1139965.31 \\
+RMSE & 1067.69 \\
+MAE & 805.27 \\
+MAPE & 39.11\% \\
+SMAPE & 34.47\% \\
+\hline
+\end{tabular}
+\end{table}
+
+图 \ref{fig:ma-prediction} 展示 MA 模型的预测结果和实际负载值的对比图。从图中可以
+看出，MA 模型能够较为准确地捕捉到负载数据的短期波动性，预测结果与实际负载值的变化趋势基本
+一致，但预测效果不是很理想。同时，此图也包含 MA 模型的残差图，可观察到 MA 
+模型的残差依旧存在一些周期性，这表明存在改进的空间。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.0\textwidth]{images/ma-prediction.png}
+\caption{MA 预测结果和实际负载值、残差对比}
+\label{fig:ma-prediction}
+\end{figure}
+
+
+MA 模型可以为我们提供一个基础的负载预测结果，同时也可以用来评估其他
+更复杂的负载预测模型的性能优劣。作为基准模型，本研究不期望其实际应用效果，原因在于 MA 模型虽然简单，但在某些情况下可能不适用。
+例如，在负载数据存在长期趋势或季节性变化的情况下，MA 模型可能无法捕捉到这些特征，从而导致负载预测的准确性下降。
+
+\subsection{VAR 模型}
+
+VAR 模型是一种常用的多变量时间序列模型，可以同时考虑多个变量之间的相互作用，适用于具有相互
+关联的多个时间序列数据的预测。在本文中，我们选用 time、weekday 和 hour、event\_count 等多个特征来构建 VAR 模型。
+
+\begin{table}[tbp]
+	\centering
+	\caption{VAR 不同阶数下的各准则值}
+	\label{table:var_order_selection}
+	\begin{tabular}{c|c|c|c|c}
+	\hline
+	\textbf{VAR Order} & \textbf{AIC} & \textbf{BIC} & \textbf{FPE} & \textbf{HQIC} \\
+	\hline
+	0* & 19.34 & 19.35 & 2.518e+08 & 19.35 \\
+	1 & 15.22 & 15.25 & 4.090e+06 & 15.23 \\
+	2 & 15.18 & 15.23 & 3.907e+06 & 15.20 \\
+	3 & 15.17 & 15.23 & 3.858e+06 & 15.19 \\
+	4 & 15.16 & 15.25 & 3.823e+06 & 15.19 \\
+	5 & 15.15 & 15.26 & 3.781e+06 & 15.19 \\
+	6 & 15.14 & 15.27 & 3.748e+06 & 15.18 \\
+	7 & 15.13 & 15.28 & 3.725e+06 & 15.19 \\
+	8 & 15.12 & 15.29 & 3.693e+06 & 15.18 \\
+	9 & 15.10 & 15.29 & 3.615e+06 & 15.17 \\
+	10 & 15.08 & 15.29 & 3.546e+06 & 15.16 \\
+	11 & 15.07 & 15.30 & 3.497e+06 & 15.15 \\
+	12 & 15.05 & 15.30 & 3.421e+06 & 15.14 \\
+	13 & 15.02 & 15.30 & 3.342e+06 & 15.12 \\
+	14 & 14.99 & 15.29 & 3.251e+06 & 15.10 \\
+	15 & 14.96 & 15.28 & 3.144e+06 & 15.08 \\
+	16 & 14.91 & 15.25 & 2.994e+06 & 15.03 \\
+	17 & 14.85 & 15.21 & 2.826e+06 & 14.98 \\
+	18 & 14.77 & 15.15 & 2.599e+06 & 14.91 \\
+	19 & 14.66 & 15.06 & 2.322e+06 & 14.80 \\
+	20 & 14.48 & 14.90 & 1.942e+06 & 14.63 \\
+	21 & 14.20 & 14.64 & 1.473e+06 & 14.36 \\
+	22 & 13.62 & 14.08 & 8.196e+05 & 13.78 \\
+	23 & -41.31 & -40.82 & 1.152e-18 & -41.13 \\
+	24 & -46.04 & -45.53 & 1.016e-20 & -45.85 \\
+	\hline
+\end{tabular}
+\end{table}
+
+为了解决模型选择问题，评估模型的好坏，并寻找最佳的模型我们使用一些准则，
+包括赤池信息准则（Akaike Information Criterion, AIC）、
+贝叶斯信息准则（Bayesian Information Criterion, BIC）、
+预测误差准则（Final Prediction Error, FPE）
+以及汉纳-奎因准则（Hannan-Quinn Information Criterion, HQIC）。
+
+
+\paragraph*{赤池信息准则（Akaike Information Criterion, AIC）}：AIC是由 Akaike 提出的\cite{akaike1981}，主要用于模型选择。AIC不仅考虑了模型的拟合度，还对模型的复杂度进行了惩罚。当模型越复杂（参数越多）时，AIC值就越大。选择最佳模型时，通常选择AIC值最小的模型。AIC的计算公式如下：
+
+    \[ AIC = 2k - 2\ln(L) \]
+
+    其中，$k$是模型参数的数量，$L$是模型的最大似然值。
+
+\paragraph*{贝叶斯信息准则（Bayesian Information Criterion, BIC）}：BIC也是用于模型选
+择的一种准则，由Schwarz提出 \cite{schwarz1978}。与AIC类似，BIC也对模型的复杂度进行了惩罚，但是BIC的惩罚项比AIC更大
+，因此BIC对模型的复杂度惩罚更严重。BIC的计算公式如下：
+
+    \[ BIC = \ln(n)k - 2\ln(L) \]
+
+    其中，$n$是观察的数据量，$k$是模型参数的数量，$L$是模型的最大似然值。
+
+\paragraph*{预测误差准则（Final Prediction Error, FPE）}：FPE由Akaike提出，主要用于时间序列模型的选择。FPE不仅考虑了模型的拟合度，还对模型的复杂度进行了惩罚\cite{8075977}。FPE的计算公式如下：
+
+    \[ FPE = \frac{(n+k)p}{n-p} \]
+
+    其中，$n$是观察的数据量，$p$是模型参数的数量。
+
+\paragraph*{汉纳-奎因准则（Hannan-Quinn Information Criterion, HQIC）}：HQIC由汉纳和奎因提出，主要用于模型选择。与AIC和BIC类似，HQIC也对模型的复杂度进行了惩罚，但是HQIC的惩罚项介于AIC和BIC之间\cite{pollock1999}。HQIC的计算公式如下：
+
+\[ HQIC = -2\ln(L) + 2k\ln(\ln(n)) \]
+
+其中，$n$是观察的数据量，$k$是模型参数的数量，$L$是模型的最大似然值。
+
+表 \ref{table:var_order_selection} 
+展示不同阶数的 VAR 模型的 AIC、BIC、FPE 和 HQIC 值。从表中可观察到，当阶数为 22 时，
+VAR 模型的 AIC、BIC、FPE 和 HQIC 值均达到最小，并且没有变成负值，因此我们选择阶数为 22 的 VAR 模型。
+
+
+\begin{table}[tbp]
+	\centering
+	\caption{VAR 模型评测指标}
+	\label{table:var_regression_metrics}
+	\begin{tabular}{c|c|c}
+	\hline
+	\textbf{指标} & \textbf{数值} & \textbf{MA 模型基准}\\
+	\hline
+	MSE & 680996.57 & 1139965.31 \\
+	RMSE & 825.23 & 1067.69 \\
+	MAE & 590.93 & 805.27 \\
+	MAPE & 26.98\% & 39.11\% \\
+	SMAPE & 25.54\% & 34.47\% \\
+	
+	\hline
+	\end{tabular}
+	\end{table}
+
+表 \ref{table:var_regression_metrics} 展示使用 VAR 模型进行负载预测的评价指标。
+
+实验结果表明，使用 VAR 模型进行负载预测的效果明显优于 MA 模型。
+
+\buptfigure[width=1.0\textwidth]{images/var-prediction.png}{预测结果和实际负载值、残差对比}{fig:ma-prediction}
+
+
+图 \ref{fig:ma-prediction} 展示使用 VAR 模型进行负载预测的实验结果。可观察到预测值与实际值的误差较小，且残差图
+表明基本消除了周期性，且预测误差更加均匀，这说明 VAR 模型在捕捉负载数据的周期性、趋势性和季节性等方面具有
+较好的能力。
+
+
+\subsection{ARIMA 模型}
+
+\subsubsection{模型参数选择}
+
+在时间序列分析中，ARIMA（Autoregressive Integrated Moving Average）模型是一种广泛
+应用的时间序列预测方法。ARIMA模型的参数选择是关键步骤之一，本节将介绍基于信息准则的模型
+参数选择方法。
+
+首先，应当对时间序列数据进行平稳性检验，若序列不满足平稳性，则需要进行差分处理，直至
+达到平稳状态。通过对差分后的序列进行自相关函数（ACF）和偏自相关函数（PACF）的分析，可以
+初步确定ARIMA模型的参数p和q。其中，p表示AR模型的阶数，q表示MA模型的阶数。
+
+在本研究中，ARIMA模型的参数选择过程采用了Akaike Information Criterion (AIC)和
+Bayesian Information Criterion (BIC)两个指标。AIC和BIC均可以用于衡量模型拟合优度，
+它们分别对应模型拟合优度与模型复杂度的平衡，较小的AIC或BIC值表示更好的模型拟合。
+
+
+\begin{bupttable}{ACF和PACF表}{arima-acf-pacf}
+	\begin{tabular}{cccc}
+	\hline
+	lags & autocorrelation & pacf \\
+	\hline
+	0  & 1.00 & 1.00 \\
+	1  & 0.60 & 0.60 \\
+	2  & 0.44 & 0.13 \\
+	3  & 0.34 & 0.06 \\
+	4  & 0.29 & 0.06 \\
+	5  & 0.27 & 0.07 \\
+	6  & 0.24 & 0.03 \\
+	7  & 0.19 & -0.02 \\
+	8  & 0.16 & 0.01 \\
+	9  & 0.16 & 0.04 \\
+	10 & 0.18 & 0.06 \\
+	11 & 0.16 & -0.00 \\
+	12 & 0.16 & 0.04 \\
+	13 & 0.16 & 0.03 \\
+	14 & 0.12 & -0.03 \\
+	15 & 0.11 & -0.00 \\
+	16 & 0.11 & 0.03 \\
+	17 & 0.13 & 0.04 \\
+	18 & 0.17 & 0.07 \\
+	19 & 0.18 & 0.04 \\
+	20 & 0.17 & 0.01 \\
+	21 & 0.18 & 0.04 \\
+	22 & 0.21 & 0.08 \\
+	23 & 0.24 & 0.07 \\
+	24 & 0.27 & 0.07 \\
+	\hline
+	\end{tabular}
+\end{bupttable}
+
+首先，我们根据给定数据，计算后生成自相关函数（ACF）和偏自相关函数（PACF）图表，
+如表 \ref{arima-acf-pacf} 所示。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/acf-pacf.png}
+	\caption{ACF和PACF图形}
+	\label{fig:arima-acf-pacf}
+  \end{figure}
+
+然后，我们根据ACF和PACF图形（如图 \ref{fig:arima-acf-pacf} 所示）确定ARIMA模型的参数p和q。
+从图中可观察到，ACF图在滞后阶数为1时截尾，PACF图在滞后阶数为2时截尾，因此可以初步
+确定ARIMA模型的参数p=1，q=2。
+
+为了进一步确定ARIMA模型的参数，选取不同的ARIMA模型参数进行尝试。采用的是穷举并对比 AIC 和 BIC
+的方法。
+
+表 \ref{table:arima_model_evaluation_metrics} 展示针对给定时间序列数据的不同ARIMA模型的AIC和BIC值。
+
+\begin{bupttable}{ARIMA 模型评测指标}{table:arima_model_evaluation_metrics}
+	\begin{tabular}{c|c|c}
+	\hline
+	\textbf{ARIMA Parameters} & \textbf{AIC} & \textbf{BIC} \\
+	\hline
+	(0, 0, 0) & 49040.07 & 49052.00 \\
+	(0, 0, 1) & 48195.20 & 48213.10 \\
+	(0, 0, 2) & 47930.20 & 47954.06 \\
+	(0, 0, 3) & 47843.45 & 47873.28 \\
+	(0, 0, 4) & 47811.97 & 47847.77 \\
+	(0, 0, 5) & 47786.11 & 47827.87 \\
+	(0, 0, 6) & 47739.97 & 47787.69 \\
+	(0, 0, 7) & 47716.49 & 47770.18 \\
+	(1, 0, 0) & 47764.59 & 47782.48 \\
+	(1, 0, 1) & 47707.93 & 47731.79 \\
+	(1, 0, 2) & 47697.82 & 47727.65 \\
+	(1, 0, 3) & 47687.50 & 47723.29 \\
+	(1, 0, 4) & 47680.53 & 47722.29 \\
+	(1, 0, 5) & 47681.68 & 47729.40 \\
+	(1, 0, 6) & 47681.96 & 47735.65 \\
+	(1, 0, 7) & 47671.27 & 47730.93 \\
+	(2, 0, 0) & 47718.77 & 47742.63 \\
+	(2, 0, 1) & 47679.91 & 47709.74 \\
+	\textbf{(2, 0, 2)} & \textbf{47672.61} & \textbf{47708.40} \\
+	(2, 0, 3) & 47674.64 & 47716.40 \\
+	(2, 0, 4) & 47675.70 & 47723.42 \\
+	(2, 0, 5) & 47683.87 & 47737.56 \\
+	(2, 0, 6) & 47685.69 & 47745.35 \\
+	(2, 0, 7) & 47671.74 & 47737.36 \\
+	\hline
+	\end{tabular}
+\end{bupttable}
+
+经过比较，我们发现ARIMA(2, 0, 2)模型具有最低的AIC值为47672.61，同时BIC值为47708.40，因此选取ARIMA(2, 0, 2)作为最优模型。
+
+
+
+\subsubsection{ARIMA 模型的预测效果评估}
+
+图 \ref{fig:arima-prediction} 展示 ARIMA 模型的预测结果和实际负载值的对比图。从图中可以
+看出，ARIMA 模型相比 MA 和 VAR 模型，能够更为准确地捕捉到负载数据的短期波动性，预测结果与实际
+负载值的变化趋势基本一致，预测效果较好。同时，图中还包含 ARIMA 模型的残差图，可观察到周期性基
+本被消除。
+
+\buptfigure[width=1.0\textwidth]{images/arima-prediction.png}{预测结果和实际负载值、残差对比}{fig:arima-prediction}
+
+\begin{table}[h]
+    \centering
+    \caption{ARIMA模型预测效果指标}
+    \label{table:arima_evaluation_metrics}
+    \begin{tabular}{c|c|c}
+        \hline
+        \textbf{指标} & \textbf{数值} & \textbf{MA 模型基准} \\
+        \hline
+        MSE & 291700.66 & 1139965.31 \\
+        RMSE & 540.09 & 1067.69 \\
+        MAE & 405.24 & 805.27 \\
+        MAPE & 19.30\% & 39.11\% \\
+        SMAPE & 17.82\% & 34.47\% \\
+        \hline
+    \end{tabular}
+\end{table}
+	
+从表\ref{table:arima_evaluation_metrics}中可观察到，相较于 MA 和 VAR 模型，ARIMA模型的
+预测效果评估指标表现良好。均方误差和均方根误差较小，说明模型的预测误差较小；平均绝对误差和平均绝对
+百分比误差也较小，说明模型的平均预测误差不大；对称平均绝对百分比误差也较小，说明模型对正负误差的
+惩罚是比较对称的。
+
+\subsection{Prophet 模型}
+
+\subsubsection{数据预处理}
+
+由于 Prophet 模型所需要的数据格式特殊，首先需要对数据再次预处理。
+
+Prophet模型要求时间序列的时间戳是 ds（日期戳）列，并且
+它必须是 datetime 类型。在本例中，时间戳数据被存储在 
+time 列中，并且以秒为单位。故使用 pd.to\_datetime 函数将其转换为 datetime 类型。
+
+然后，Prophet模型要求时间序列的值被存储在 y 列中。在本研究的
+数据中，这些值被存储在 event\_count 列中，因此应当将
+列名更改为 y。
+
+最后，应当将数据集划分为训练集和测试集。
+在这个例子中，我们选择了2022年1月1日到2022年4月30日的数据，
+并且将最后一周的数据作为测试集，其余的数据作为训练集。
+
+\subsubsection{模型训练}
+
+在完成数据预处理后，可以开始训练Prophet模型。
+模型训练主要包括模型的初始化和拟合。
+
+首先，应当创建一个Prophet模型的实例。在默认情况下
+Prophet模型会自动处理趋势和季节性，但是也可以通过设
+置参数来调整模型的行为。例如，可以通过设置 
+seasonality\_mode 参数来改变季节性的模型（加性或乘性），
+或者通过设置 changepoint\_prior\_scale 参数来改变趋势
+变化点的灵敏度。在本例中，我们使用默认设置创建一个Prophet
+模型的实例。
+
+\subsubsection{Prophet 模型的预测效果评估}
+
+图 \ref{fig:prophet-prediction} 展示 Prophet 模型的预测效果。
+蓝色曲线代表实际值，黄色曲线代表预测值的期望。我们还可以看到一个灰色
+区域，灰色区域的上边界代表预测值的上界，下边界代表预测值的下界。
+
+\buptfigure[width=1.0\textwidth]{images/prophet-prediction.jpg}{预测结果和实际负载值对比}{fig:prophet-prediction}
+
+图 \ref{fig:prophet-res} 展示 Prophet 模型的预测残差图。
+
+\buptfigure[width=1.0\textwidth]{images/prophet-res.jpg}{预测结果和实际负载值的残差对比}{fig:prophet-res}
+
+\begin{table}[h]
+    \centering
+    \caption{Prophet 模型预测效果指标}
+    \label{table:prophet_evaluation_metrics}
+    \begin{tabular}{c|c|c}
+        \hline
+        \textbf{指标} & \textbf{数值} & \textbf{MA 模型基准} \\
+        \hline
+        MSE & 823243.67 & 1139965.31 \\
+        RMSE & 907.33 & 1067.69 \\
+        MAE & 673.04 & 805.27 \\
+        MAPE & 31.22\% & 39.11\% \\
+        SMAPE & 29.23\% & 34.47\% \\
+        \hline
+    \end{tabular}
+\end{table}
+
+我们对Prophet模型的预测性能进行了定量评估，所得结果如 表 \ref{table:prophet_evaluation_metrics}
+所示。结果表明，Prophet模型在所有指标上均优于MA模型基准。
+
+\subsection{各个模型的预测性能对比}
+
+
+\begin{table}[h]
+    \centering
+    \caption{模型预测效果对比}
+    \label{table:model_evaluation_metrics_comparison}
+    \begin{tabular}{c|c|c|c|c}
+        \hline
+        \textbf{指标} & \textbf{MA模型} & \textbf{VAR模型} & \textbf{ARIMA模型} & \textbf{Prophet模型} \\
+        \hline
+        MSE & 1139965.31 & 680996.57 & 291700.66 & 823243.67 \\
+        RMSE & 1067.69 & 825.23 & 540.09 & 907.33 \\
+        MAE & 805.27 & 590.93 & 405.24 & 673.04 \\
+        MAPE & 39.11\% & 26.98\% & 19.30\% & 31.22\% \\
+        SMAPE & 34.47\% & 25.54\% & 17.82\% & 29.23\% \\
+        \hline
+    \end{tabular}
+\end{table}
+
+从表\ref{table:model_evaluation_metrics_comparison}中我们可观察到，四种模型的预测效果在各个指标上有所不同。ARIMA模型在所有评测指标上的表现都优于其他三种模型。ARIMA模型的MSE、RMSE、MAE、MAPE和SMAPE分别为291700.66、540.09、405.24、19.30\%和17.82\%，这些指标的数值均低于其他模型，显示出ARIMA模型具有更高的预测精度。
+
+VAR模型的MSE、RMSE、MAE、MAPE和SMAPE数值为680996.57、825.23、590.93、26.98\%和25.54\%，
+排名次之，也显示出良好的预测性能。然后是Prophet模型，虽然其在所有指标上的表现都优于MA模型，
+但是与ARIMA和VAR模型相比则略显逊色。
+
+最后，MA模型的预测效果最差，所有评测指标的数值都最高，显示出预测误差较大。
+
+综上，从预测精度角度来看，在本任务中，ARIMA模型是四种模型中表现最好的，然后是VAR模型，Prophet模型和MA模型的预测效果相对较差。
+
+\subsection{各个模型的训练时间对比}
+
+\begin{table}[h]
+    \centering
+    \caption{模型训练时间对比}
+    \label{table:model_training_time_comparison}
+    \begin{tabular}{c|c}
+        \hline
+        \textbf{模型} & \textbf{训练时间 (s)} \\
+        \hline
+        MA模型 & 0.0 \\
+        VAR模型 & 0.4 \\
+        ARIMA模型 & 0.1 \\
+        Prophet模型 & 4.7 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+从表\ref{table:model_training_time_comparison}中我们可观察到，四种模型的训练时间存在显著差异。其中，MA模型的训练时间最短，几乎为零，表示该模型可以即时进行预测。其次是ARIMA模型，训练时间为0.1s，也是非常快。VAR模型的训练时间稍长，为0.4s。
+
+然而，Prophet模型的训练时间最长，达到了4.7s。这可能是由于Prophet模型在构建过程中包含了更多的复杂度和参数，因此需要更长的训练时间。这可能在实时或者需要快速响应的预测任务中会成为一种限制。
+
+因此，在选择模型时，除了考虑预测精度外，我们还需要根据具体应用场景和需求，考虑模型的训练时间，以
+达到最佳的性能和效率的平衡。在本研究的场景中，Serverless 流量预测需要滚动训练模型，因此如果
+涉及的服务较多，历史数据较长，应当在应用时增加对训练时间的考虑权重。
+
+
+\subsection{结论}
+
+从上述分析可以得出结论，尽管各模型在预测性能和训练时间上都有各自的优势，但在综合考虑预测精度和训练时间的情况下，ARIMA模型成为本研究的首选。
+
+首先，ARIMA模型在所有的评价指标上，包括MSE、RMSE、MAE、MAPE和SMAPE，均表现出最优的预测性能，这说明ARIMA模型在预测准确性上胜过其他模型。预测精度是我们选用预测模型的重要依据，因为高精度的预测结果可以为伸缩决策提供更可靠的依据，减小决策的风险。
+
+其次，ARIMA模型的训练时间仅为0.1s，虽然不及MA模型的瞬时训练，但仍远低于Prophet模型的4.7s，也比VAR模型的0.4s要短。在许多情况下，应当模型能够快速地进行训练和预测，以适应数据的实时变化和快速响应的需求。
+
+因此，综合预测精度和训练时间，ARIMA模型被我们选择为主要的预测模型。
+
+
+
+\chapter{算法的部署与应用}
+
+OpenFaaS 是一个开源的函数即服务（Function as a Service，FaaS）平台，它通过将业务逻
+辑封装成可重用、独立的函数来提供服务。相比于传统的服务器架构，FaaS 更加轻量级、弹性化，
+具有更好的可扩展性和更低的成本。
+
+本章将介绍如何在 OpenFaaS 平台上部署本文设计的算法，并通过一个实际的案例来展示该算法的应用效果。
+
+
+\section{整体设计}
+
+本研究所提出的系统设计以高效性、稳定性和自适应性为目标，围绕算法模块、
+监控模块和控制模块进行布局。下面，我们将详细阐述每个模块的设计思路和实现方式。图 \ref{fig:sys3} 展示了
+整体设计思路。
+
+\buptfigure[width=1.0\textwidth]{images/sys3.png}{部署设计图}{fig:sys3}
+
+
+
+
+
+\subsection{算法}
+
+算法模块是整个系统的核心，包括数据处理和训练两个子模块，负责模型的构建、训练和预测。
+该模块可通过手动调用或定时任务启动，对系统内的大量信息进行实时处理和决策，
+以实现自动化的负载调度和资源分配。
+
+在系统启动之后，算法模块会通过调用 Prometheus 监控服务的 Web API 收集过去一段时间
+ T 的调用情况，并将这些数据与历史数据合并，构成训练样本，输入到训练子模块。
+ 经过一系列计算，模型在数秒内完成实时训练，并生成下一时间 T+1 的预测值。
+ 为了进一步实施负载调度，我们引入预定义的系数 k，将预测值转换为下一时间 T + 1 的副本数量。
+
+\subsection{监控}
+
+监控模块主要负责收集和存储系统的运行数据，提供给算法模块进行处理。这个模块由 Prometheus 提供，其指标来源于 OpenFaaS 容器。通过 Prometheus 的监控，我们可以对系统进行全方位的观察和分析，以便在必要时进行调整和优化。
+
+\subsection{控制}
+
+控制模块是系统的执行部分，负责将算法模块的决策转化为具体的行动。一旦算法模块完成计算并产生预测值，
+控制模块就会调用 kubectl 的有关命令，将预测值作为目标 Serverless 函数的最小副本数，
+进行伸缩。这样就可以根据实际需求，动态调整系统的负载和资源分配。
+
+\section{硬件与软件环境}
+
+该实验使用的操作系统为 Ubuntu 20.04.2 LTS x86\_64，
+主机使用的是 OpenStack Nova 13.2.1-20230408163250\_be95288。
+内核版本为 Linux 5.4.0-66-generic。CPU 为 Intel Xeon Gold 6278C（8核），主频为 2.600GHz。
+物理内存大小为 32116MiB。GPU 使用的是 NVIDIA Tesla T4。
+
+
+
+
+\section{Kubernetes 集群的搭建和 OpenFaaS 的部署}
+
+为应用本算法，应当搭建一个 Kubernetes 集群，并在该集群中安装
+ OpenFaaS 以及本文设计的程序。
+
+
+\subsection{OpenFaaS 的部署}
+
+本节将介绍如何在本地部署 OpenFaaS 平台并测试其功能\cite{openfaas_get_started_2019}。
+
+首先，应当安装 Docker 和 Kubernetes。
+
+步骤1:首先,应当在本地环境中安装 Docker 和 Kubernetes 这两个相关的容器组件技术。
+
+步骤1.1:要安装 Docker,应当按照 Docker 官方文档的指引,在 Linux 主机上执行以下命令,以便从 Docker 的软件源安装最新版本的 Docker Engine - Community:
+\begin{lstlisting}[language=bash]
+curl -sLS https://get.docker.com | sudo sh
+\end{lstlisting}
+
+步骤1.2:然后,应当下载 Kubernetes 命令行工具 kubectl 的最新版本。可以按照 Kubernetes 官方文档的说明,在 Linux 主机上执行以下命令:
+\begin{lstlisting}[language=bash] 
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+\end{lstlisting}
+
+步骤2:安装完 Docker 和 kubectl 之后,应当安装 Kubernetes 的本地虚拟集群工具 Kind。可以从项目的 GitHub 发行版页面下载 Kind 的最新版本,然后执行以下命令进行安装:
+\begin{lstlisting}[language=bash]
+wget "https://github.com/kubernetes-sigs/kind/releases"\
+"/download/v0.18.0/kind-linux-amd64" -O kind 
+chmod +x kind
+sudo mv kind /usr/local/bin/
+\end{lstlisting}
+
+步骤3:使用 Kind 工具创建一个名为 "openfaas"的 Kubernetes 本地集群:
+\begin{lstlisting}[language=bash]
+kind create cluster --name openfaas 
+\end{lstlisting}
+
+步骤4:我们继续执行 Kind 和 kubectl 命令设置当前工作环境变量以操作该 openfaas 集群:
+\begin{lstlisting}[language=bash] 
+export KUBECONFIG="$(kind get kubeconfig-path --name="openfaas")"
+\end{lstlisting}
+
+步骤5:最后,我们使用 arkade 这一自动化工具安装 OpenFaaS 组件到集群之上。我们按照 arkade 的安装指引,在 Linux 主机上下载并执行其安装脚本: 
+\begin{lstlisting}[language=bash]
+curl -sLS https://get.arkade.dev | sudo sh
+arkade install openfaas
+\end{lstlisting}
+
+以上命令将自动安装所需的软件包并创建名为 \verb|openfaas| 的 Kubernetes 集群，最后使用 \verb|arkade| 工具在集群中安装 OpenFaaS。安装完成后，使用以下命令来检查 OpenFaaS 是否成功安装：
+
+\begin{lstlisting}[language=bash]
+kubectl get pods -n openfaas
+\end{lstlisting}
+
+可以看到，OpenFaaS 的各个组件均已正常运行。
+
+
+\subsubsection{部署函数}
+
+在 OpenFaaS 中，函数是以 Docker 容器的形式进行部署和管理的。使用 faas-cli 工具可以方便地进
+行函数的部署。对于本文的示例，可以使用以下命令将 nodeinfo 函数部署到 OpenFaaS 中：
+
+\begin{lstlisting}[language=bash]
+faas-cli store deploy nodeinfo
+\end{lstlisting}
+
+这个命令的作用是从 OpenFaaS 的函数商店中拉取 nodeinfo 函数的镜像，并将其部署到 OpenFaaS 环境中。
+
+\subsubsection{调用函数}
+
+函数成功部署到 OpenFaaS 环境后，可以使用 HTTP 请求来调用。以下命令向部署在
+本地的 OpenFaaS 环境中的 nodeinfo 函数发送 HTTP GET 请求：
+
+\begin{lstlisting}[language=bash]
+curl -v http://127.0.0.1:8080/function/nodeinfo
+\end{lstlisting}
+
+在接收到请求后，OpenFaaS 将会将请求转发给部署的 nodeinfo 函数，
+并将函数的输出返回给客户端。
+
+\subsubsection{查看部署状态}
+
+使用 kubectl 命令可以查看 OpenFaaS 环境中部署的函数的状态。
+使用以下命令查看 nodeinfo 函数的部署状态 \cite{kubernetes_deployment_2023}：
+
+\begin{lstlisting}[language=bash]
+kubectl get deployments -n openfaas-fn
+\end{lstlisting}
+
+命令返回一个包含了所有 OpenFaaS 环境中部署的函数的列表。
+对于本文的示例，可以看到 nodeinfo 函数已经被成功部署。
+
+此外，也可以使用以下命令查看 nodeinfo 函数所在的 Pod 的状态：
+
+\begin{lstlisting}[language=bash]
+kubectl get pods -n openfaas-fn
+\end{lstlisting}
+
+该命令将返回一个包含了所有 OpenFaaS 环境中正在运行的 Pod 的列表。
+对于本文的示例，可以看到 nodeinfo 函数所在的 Pod 正在运行。
+
+\section{Prometheus 获取指标}
+
+Prometheus 提供了 HTTP API 来执行各种操作，包括获取时间序列数据
+、元数据等\cite{prometheus_api_2023}。
+为了给算法提供数据，应当使用 Prometheus 的 HTTP API 来获取 
+OpenFaaS 环境中的函数的相关指标。
+具体思路为，获取最近一个小时的调用次数，作为数据点加入到数据集中，
+并快速训练出对应的 ARIMA 模型，
+生成预测数据点，然后根据预测数据点进行伸缩。
+
+获取最近一小时的数据，需使用 range queries API。
+
+\begin{lstlisting}[language=bash]
+curl "http://localhost:9090/api/v1/query_range"\
+	"?query=gateway_function_invocation_total"\
+	"&start=<start_timestamp>"\
+	"&end=<end_timestamp>"\
+	"&step=<step_seconds>"
+\end{lstlisting}
+
+从而得到一个包含所需数据的响应：
+
+\begin{lstlisting}[language=Java]
+{
+    "status": "success",
+    "data": {
+        "resultType": "matrix",
+        "result": [
+            {
+                "metric": {
+                    "__name__": "gateway_function_invocation_total",
+                    "instance": "localhost:9090",
+                    "job": "prometheus"
+                },
+                "values": [
+                    ...
+                    [1681347300, "220"]
+                ]
+            }
+        ]
+    }
+}
+\end{lstlisting}
+
+\subsection{根据预测结果调整副本数量}
+
+在 HTTP API 中，可以使用 POST /system/functions 接口来部署或更新函数，包括调整副本
+数量。为了调整 nodeinfo 函数的副本数量，控制程序会发送以下 HTTP 请求
+
+\begin{lstlisting}[language=bash]
+	POST /system/functions HTTP/1.1
+Host: <OpenFaaS Gateway URL>
+Content-Type: application/json
+Authorization: Bearer <Your OpenFaaS Token>
+
+{
+    "service": "nodeinfo",
+    "image": "functions/nodeinfo",
+    "labels": {
+        "com.openfaas.scale.min": "2",
+        "com.openfaas.scale.max": "5"
+    }
+}
+
+\end{lstlisting}
+
+在 labels 字段中，com.openfaas.scale.min 和 com.openfaas.scale.max 分别表示最小和最大
+的副本数量。
+
+除此之外，也可以通过 kubectl 直接设置副本的数量：
+
+
+\begin{lstlisting}[language=bash]
+kubectl scale deployment nodeinfo -n openfaas-fn --replicas=5
+\end{lstlisting}
+
+然后，OpenFaaS 控制器将会根据副本数量的变化，自动调整 nodeinfo 函数的副本数量。
+可以通过如下命令检查 nodeinfo 函数的副本数量：
+
+\begin{lstlisting}[language=bash]
+	kubectl get deployment nodeinfo -n openfaas-fn -o=jsonpath='{.spec.replicas}'
+\end{lstlisting}
+
+
+\subsection{自动伸缩：HPA 控制器}
+
+在容器编排中，HPA（Horizontal Pod Autoscaler）用于根据负载自动调
+整Pod的数量。Deployment是用于定义和管理Pod副本的资源对象。Pod则
+代表着运行在Kubernetes集群中的一个实例化容器\cite{kubernetes_hpa_2023}。
+
+图 \ref{fig:hpa} 中的箭头表示了对象之间的关系。箭头从HPA指向Deployment，表示HPA通过扩展或收缩
+Deployment来调整Pod的数量。Deployment和Pod之间的箭头表示
+Deployment控制着多个Pod的创建和管理。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{hpa.png}
+	\caption{HPA 控制器原理}
+	\label{fig:hpa}
+  \end{figure}
+% \section{自定义自动伸缩系统}
+% \subsection{系统的结构}
+\section{流量模拟与伸缩实验}
+\subsection{请求变化曲线的构造}
+
+为了验证自动伸缩，首先需要生成流量的变化曲线。由于实际使用时伸缩的周期是
+数小时，为了方便验证，我们将时间尺度缩小到数分钟。
+然后，我们选用一个简单的函数来模拟请求流量的变化曲线。
+
+具体而言，这个函数充当一个数据生成器，它可以根据给定的种子和长度，生成具有特定属性的
+时间序列数据。我们希望这些数据具有一定的随机性，以模拟实际场景的不
+确定性；同时，我们还希望它具有一定的周期性（包括短周期和长周期），以反映
+某些周期性因素的影响；此外，我们希望这些数据具有整体的上升趋势，从而反映某些长
+期趋势（例如业务增长）的影响。最后，我们希望这些数据是整数，并且其值在0~1000之间，
+从而确保它们与实际的函数调用次数具有相同的数量级。
+
+数据生成器函数的代码如下：
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_data(seed, t_length, small_period=24, large_period=720):
+    np.random.seed(seed)
+    
+    # 初始化序列
+    y = np.zeros(t_length)
+    
+    # 生成随机步长。此处，我们使步长的平均值稍微偏正，以保证整体的升趋势。
+    steps = np.random.randint(-40, 45, size=t_length - 1)
+    
+    # 计算随机漫步序列
+    for t in range(1, t_length):
+        y[t] = y[t-1] + steps[t-1]
+        
+    # 添加周期性趋势
+    t = np.arange(t_length)
+    y += np.sin(2 * np.pi * t / small_period) * 50  # 小周期趋势
+    y += np.sin(2 * np.pi * t / large_period) * 100  # 大周期趋势，可以调整振幅以增加或减少周期性趋势的强度
+    
+    # 为了保证y的范围在0~1000之间，我们将y线性映射到这个范围
+    y = (y - np.min(y)) / (np.max(y) - np.min(y)) * 1000
+    
+    # 因为y应该是整数，所以我们进行四舍五入
+    y = np.round(y).astype(int)
+    
+    return y
+\end{lstlisting}
+
+它的工作原理如下：
+
+首先，我们使用给定的种子初始化随机数生成器，以确保本研究的数据生成过程是可复
+现的。然后，我们生成一个随机步长序列，这个步长序列可以是正的或负的，但
+我们使其平均值稍微偏正，以保证整体的上升趋势。然后，我们使用这个步长
+序列生成一个随机漫步序列，这个随机漫步序列体现了数据的随机性。
+
+接下来，我们添加了两个周期性趋势。一个是小周期趋势，周期为24，模拟了一
+天内的变化；另一个是大周期趋势，周期为720，模拟了一个月内的变化。我们使
+用sine函数来生成这两个周期性趋势，因为sine函数是周期性的，而且它的值
+在-1和1之间，这使得可以通过调整振幅来控制周期性趋势的强度。
+
+最后，为了保证生成的数据的值在0~1000之间且是整数，我们将随机漫
+步序列和周期性趋势的和线性映射到这个范围，然后进行四舍五入。线性映射
+的过程是通过计算最小值和最大值，然后使用这两个值将数据缩放和平移到
+目标范围。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/generated_data.png}
+	\caption{生成的数据示例}
+	\label{fig:generated_data}
+  \end{figure}
+
+生成的数据的示例如图 \ref{fig:generated_data} 所示。
+
+\subsection{基于模拟流量的自动伸缩仿真}
+
+我们使用 0 到 999 时刻的数据作为初始历史数据，输入到 ARIMA 模型训练，
+并预测 1000 时刻的访问量。从 1000 时刻开始，每隔 30 秒，采用下一个时
+刻的数据点作为模拟的请求数量。并滑动历史数据窗口，将新的数据点加入到模型训练
+的历史数据集中，以模拟实际的工作负载预测过程。
+
+基于预测访问量，使用请求/容器数量的比例（记作k）来计算需要扩容至的容器数量。
+此处我们采用 k=100，也即每个容器每秒处理100个请求的假设。此假设仅用于演示，其取值不影响
+预测性能或伸缩效率。在实际应用时，应当根据服务器配置情况测量得到此参数。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/y_replica.png}
+	\caption{访问量与副本数量}
+	\label{fig:y_replica}
+  \end{figure}
+
+图 \ref{fig:y_replica} 展示访问量与副本数量的关系，即假设伸缩不消耗时间情况下副本的数量关系。
+
+\subsection{仿真结果与结果分析}
+
+使用上述结果进行仿真，对于预测区间 [1001,2000] ，ARIMA 模型得到的结果如图 \ref{fig:arima_simulation} 所示。
+作为基准的 MA（WIN\_SIZE=3）模型得到的结果如图 \ref{fig:ma_simulation} 所示。
+这两张图展示实际值（蓝色曲线）与预测值（绿色曲线）之间的关系，同时使用右侧坐标轴
+展示实际所需副本数和预测所需副本数之间的关系。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/arima_simulation.png}
+	\caption{ARIMA 模型仿真结果}
+	\label{fig:arima_simulation}
+  \end{figure}
+
+  \begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/ma_simulation.png}
+	\caption{MA 模型仿真结果}
+	\label{fig:ma_simulation}
+  \end{figure}
+
+  表 \ref*{table:sim_regression_metrics} 展示模型的性能指标
+  。从 MAPE、SMAPE 的结果来看，模型的预测性能较好。且 ARIMA 模型的性能在所有指标
+  上超过 MA 模型。
+  
+  \begin{table}[tbp]
+  \centering
+  \caption{基于仿真数据预测的模型性能}
+  \label{table:sim_regression_metrics}
+  \begin{tabular}{c|c|c}
+  \hline
+  \textbf{指标} & \textbf{数值} & \textbf{MA 模型基准}\\
+  \hline
+  MSE & 169.09 & 243.23\\
+  RMSE & 13.00 &  15.60\\
+  MAE & 10.68 & 12.72\\
+  MAPE & 5.78 \% &  6.89\%\\
+  SMAPE & 5.78 \% & 6.87\%\\
+  \hline
+  \end{tabular}
+  \end{table}
+
+  而副本数量预测任务，由于相当于对访问量预测进行向上取整，预测的性能表现更为优异，
+  如表 \ref{table:sim_classification_metrics} 所示。
+  副本数量的预测几乎完全准确。且 ARIMA 模型的性能在所有指标
+  上均优于 MA 模型。
+
+\begin{table}[tbp]
+	\centering
+	\caption{基于仿真数据预测的模型性能（副本数量）}
+	\label{table:sim_classification_metrics}
+	\begin{tabular}{c|c|c}
+	\hline
+	\textbf{指标} & \textbf{数值} & \textbf{MA 模型基准}\\
+	\hline
+	MSE & 0.074 & 0.086\\
+	RMSE & 0.27 & 0.29\\
+	MAE & 0.074 & 0.086\\
+	MAPE & 2.93 \% & 3.30\%\\
+	SMAPE & 2.86 \% & 3.28\%\\
+	\hline
+	\end{tabular}
+	\end{table}
+
+\chapter{结论与展望}
+\section{结论}
+\subsection{本文的主要成果}
+本研究中提出并实施了一种基于负载预测的 Serverless 计算的自动伸缩算法。主要发现如下：
+
+\begin{itemize}
+	\item 我们基于 MA、VAR、Prophet 和 ARIMA 模型实现了有效的流量预测机制，从而能够在工作负载发
+	生变化之前做出响应，提前进行自动伸缩。通过对实际的 Serverless 工作负载进行实验，我们发现这些模型能够
+	有效预测其变化趋势。
+	
+	\item 我们设计并实施了一套基于 Prometheus 的自动预警机制。通过收集 
+	Serverless 应用的监控指标，并将这些数据输入到预测模型中，
+	可以提前做出伸缩决策，从而避免因工作负载变化导致的性能下降或资源浪费。
+	
+	\item 我们还实现了函数副本数量的自动伸缩。通过调整副本数量，Serverless 应用可以
+	根据实际的工作负载需求动态调整资源使用，从而提高资源利用率和运行稳定性。
+\end{itemize}
+
+值得一提的是，我们在每个预测时刻之前，会采用滑动窗口的方式重新训练模型，并且自动选择最优的 p,d,q 参数。
+这主要有两点好处：一是可以避免历史数据膨胀导致预测的时间复杂度常数过高；
+二是可以避免模型参数无法同步于历史数据的变化导致预测结果的不准确性。
+
+\subsection{对实际问题的解决方案}
+本研究所提出的自动伸缩算法和方案，为如何实现 Serverless 计算的自动伸缩提供了有效的解决方
+案。通过自动预警、负载预测、自动伸缩的结合，可以在工作负载变化之前做出响应，动态调整函数副本
+数量，提高资源利用率和运行稳定性。
+
+\section{局限性与未来工作}
+\subsection{本文的不足之处}
+虽然本研究取得了一些重要的发现，但还存在以下不足之处：
+
+\begin{itemize}
+	\item 本研究的负载预测模型基于历史数据进行预测，但对于那些历史数据不足，预测准确性可能会降低。
+	
+	\item 我们发现多数的 Serverless 应用，即便在日尺度下有非常高的访问次数，但在分钟或秒的尺度
+	之下，统计周期内可能根本没有访问，所以对于实际场景，精确到秒的预测的难度会非常大。这也是我们
+	选择以小时为单位的原因。
+
+	\item 允许零副本的情况下，本研究的自动伸缩算法由于采用向上取整，最少的副本数量为 1，这可能会导致资源浪费。
+
+	\item 我们实验时发现特定时间点负载的变化幅度较大，导致频繁的伸缩行为，这可能会影响应用的性能。
+
+\end{itemize}
+
+\subsection{可进一步探讨和优化的方向}
+针对上述不足之处，未来的研究可以从以下方向进行：
+
+\begin{itemize}
+	\item \textbf{使用预训练模型进行预测。} 可以考虑使用 Transformer 等模型，在同类 Serverless
+	应用上进行预训练，再使用具体的应用进行微调，以提高预测的准确性\cite{wu2020deep}。
+
+	\item \textbf{增加更多的预测特征。} 目前主要针对时间和访问次数进行预测，未来可以考虑
+	引入更多内部和外部的特征，例如，CPU 使用率，内存使用率，网络延迟等，以提高预测的准确性。
+	不过这主要适用于多特征的预测模型。
+
+	\item \textbf{考虑支持零副本的缩容。} 对于重要度不高，能接受数秒的启动延迟的应用，
+	可以考虑支持零副本的缩容，从而避免资源浪费。
+
+	\item \textbf{考虑增加对临界值的特殊处理。} 预测值量变临界情况下，可以增加一定的迟滞性，从而避免
+	过于频繁的伸缩。
+
+\end{itemize}
+这些方向将为我们提供更深入的理解和优化 Serverless 计算的自动伸缩。
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Area %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
 %%%%%%%%%%%%%%%%%%%%%%% Main Area ENDs Here %%%%%%%%%%%%%%%%%%%%%%%%
 %\let\cleardoublepage=\cleardoublepagebak
 
@@ -329,70 +1475,6 @@ def plusFunc(a, b):
 \makeatother
 
 
-\chapter*{附\qquad{}录}
-\phantomsection\addcontentsline{toc}{chapter}{附\qquad{}录}
-
-\phantomsection\addcontentsline{toc}{section}{附录1\quad{}缩略语表}
-\section*{附录1\quad{}缩略语表}
-
-\begin{bupttable}{基于浏览者行为的特征}{crowdwisdom2}
-    \begin{tabular}{l|l|l}
-        \hline \textbf{特征} & \textbf{描述} & \textbf{形式与理论范围}\\
-        \hline 点赞量 & 微博的点赞数量 & 数值，$\mathbb{N}$ \\
-        \hline 评论量 & 微博的评论数量 & 数值，$\mathbb{N}$ \\
-        \hline 转发量 & 微博的转发数量 & 数值，$\mathbb{N}$ \\
-        \hline
-    \end{tabular}
-\end{bupttable}
-
-\begin{bupttable}{基于浏览者行为的复杂特征}{complexcrowdwisdom2}
-    \begin{tabular}{l|l|l|l}
-		\hline
-        \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{类别}}} & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{特征}}} & \multicolumn{2}{c}{\textbf{不知道叫什么的表头}} \\
-        \cline{3-4}
-         & & \multicolumn{1}{c|}{\textbf{描述}} & \multicolumn{1}{c}{\textbf{形式与理论范围}} \\
-		\hline
-        \multirow{3}{*}{正常互动} & 点赞量 & 微博的点赞数量 & 数值，$\mathbb{N}$ \\
-		\cline{2-4}
-         & 评论量 & 微博的评论数量 & 数值，$\mathbb{N}$ \\
-		\cline{2-4}
-         & 转发量 & 微博的转发数量 & 数值，$\mathbb{N}$ \\
-		\hline
-        非正常互动 & 羡慕量 & 微博的羡慕数量 & 数值，$\mathbb{N}$ \\
-        \hline
-    \end{tabular}
-\end{bupttable}
-\buptfigure[width=0.15\textheight]{pictures/autoencoder}{自编码器结构}{autoencoder}
-
-\begin{lstlisting}[language=Python, caption=减法, label=minus, tabsize=2]  
-def minusFunc(a, b):
-	return a - b 
-\end{lstlisting}  
-
-\begin{equation}
-\label{PCA_goal}
-\begin{aligned}
-\max_{\substack{\bm{W}}}  &  tr(\bm{W}^\mathrm{T}\bm{X}\bm{X}^ \mathrm{T}\bm{W})
-\end{aligned}
-\end{equation}
-
-\clearpage
-\phantomsection\addcontentsline{toc}{section}{附录2\quad{}数学符号}
-\section*{附录2\quad{}数学符号}
-\begin{center}
-	\begin{tabular}{ccc}
-		\multicolumn{2}{c}{\textbf{数和数组}} \\
-		\\
-		$a$ & 标量（整数或实数）\\
-		$\bm{a}$ & 向量\\
-		$dim()$ & 向量的维数\\
-		$\bm{A}$ & 矩阵\\
-		$\bm{A}^\mathrm{T}$ & 矩阵$\textbf{A}$的转置\\
-		$\bm{I}$ & 单位矩阵（维度依据上下文而定） \\
- 		$diag(\bm{a})$ & 对角方阵，其中对角元素由向量$\bm{a}$确定 \\
-
-	\end{tabular}
-\end{center}
 
 
 % Translated Article
@@ -420,11 +1502,10 @@ def minusFunc(a, b):
 
 
 \begin{center}
-\sanhao\heiti\textbf{真假新闻的在线传播}
+	\sanhao\heiti\textbf{深度Transformer模型在时间序列预测中的应用：流感盛行病例研究}
 
-\xiaosihao\songti{Soroush Vosoughi, Deb Roy, Sinan Aral}
+\xiaosihao\songti{Neo Wu, Bradley Green, Xue Ben, Shawn O'Banion}
 
-\xiaosihao\songti{麻省理工学院}
 \end{center}
 
 \songti{}
@@ -432,49 +1513,8 @@ def minusFunc(a, b):
 \let\clearpage\relax
 \let\cleardoublepage\relax
 
-%以下是排版示例，在这里为了使章节编号不出现在目录中，使用了无编号的样式，代价是这些数字都要自己书写。
-
-\chapter*{第一章\quad{}概述}
-%每一个chapter后记得以下两行
-\newtranschapter
-
-\section*{1.1\quad{}概述}
-决策、合作、通信和市场领域的基础理论全都将对真实或准确度的概念化作为几乎一切人类努力的核心。然而，不论是真实信息还是虚假信息都会于在线媒体上迅速传播。定义什么是真、什么是假成了一种常见的政治策略，而不是基于一些各方同意的事实的争论。我们的经济也难免遭受虚假信息传播的影响。虚假流言会影响股价和大规模投资的动向，例如，在一条声称巴拉克·奥巴马在爆炸中受伤的推文发布后，股市市值蒸发了1300亿美元。的确，从自然灾害到恐怖袭击，我们对一切事情的反应都受到了扰乱。
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-\begin{equation}
-\label{PCA_goal_appx1}
-\begin{aligned}
-\max_{\substack{\bm{W}}}  &  tr(\bm{W}^\mathrm{T}\bm{X}\bm{X}^ \mathrm{T}\bm{W})
-\end{aligned}
-\end{equation}
-
-我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字s。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。我只是为了把第二章挤到下一页而凑的字。
-
-\newpage %每一章需要另起一页，为了灵活，我没有把它固定在样式中，你可以根据需求添加分页符
-\chapter*{第二章\quad{}我也不知道是什么}
-\newtranschapter
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-\begin{equation}
-\label{PCA_goal_appx2}
-\begin{aligned}
-\max_{\substack{\bm{W}}}  &  tr(\bm{W}^\mathrm{T}\bm{X}\bm{X}^ \mathrm{T}\bm{W})
-\end{aligned}
-\end{equation}
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
-新的社交网络技术在使信息的传播速度变快和规模变大的同时，也便利了不实信息（即不准确或有误导性的信息）的传播。然而，尽管我们对信息和新闻的获取越来越多地收到这些新技术的引导，但我们仍然对他们在虚假信息传播上的作用知之甚少。尽管媒体对假新闻传播的轶事分析给予了相当多的关注，但仍然几乎没有针对不实信息扩散或其发布源头的大规模实证调查。目前，虚假信息传播的研究仅仅局限于小的、局部的样本的分析上，而这些分析忽略了两个最重要的科学问题：真实信息和虚假信息的传播有什么不同？哪些人类判断中的因素可以解释这些不同？
-
+%以下是排版示例，在此处为了使章节编号不出现在目录中，选用无编号的样式，代价是这些数字都要自己书写。
+\input{trans.tex}
 \endgroup
 
 % 开题报告
